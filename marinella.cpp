@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <cstring>
 
+#include "HelperFunctions.h"
+
 #include "Boat.h"
 #include "MotorBoat.h"
 #include "NarrowBoat.h"
@@ -13,63 +15,71 @@ using namespace std;
 
 int main(void)
 {
-	int choice;
-
 	// =================== MENU ======================
-
-	cout << "@@@@@@@@@@@@@@ MARINELLA (R) - Marina Berth Booking System @@@@@@@@@@@@@" << endl;
-	cout << "\nPlease select an option from the menu below..." << endl;
-	cout << "------------------------------------------------------------------------" << endl;
-	cout << "|  1. New booking  |  2. Delete record  |  3. Show marina  |  4. Exit  |" << endl;
-	cout << "------------------------------------------------------------------------" << endl;
-
+	int choice;
+	HelperFunctions::printMenu();
 	cin >> choice;
-
 	// ===============================================
 
-	if (choice == 1)
+	switch (choice)
 	{
-		int boatChoice;
-
-		cout << "Please select type of boat:" << endl;
-		cout << "1. Motorboat" << endl;
-		cout << "2. Narrowboat" << endl;
-		cout << "3. Sailingboat" << endl;
-		cin >> boatChoice;
-
-		float boatLenght, boatDepth;
-		cout << "Please enter the lenght of the boat: ";
-		cin >> boatLenght;
-		cout << "Please enter the depth of the boat: ";
-		cin >> boatDepth;
-
-		switch (boatChoice)
+		// New booking
+		case 1:
 		{
-			case 1: 
+			int boatChoice;
+			HelperFunctions::printSubMenu(choice);
+			cin >> boatChoice;
+
+			switch (boatChoice)
 			{
-				MotorBoat* motorBoat = new MotorBoat(boatLenght, boatDepth);
-				cout << "\n\nDetails of the motorboat" << endl;
-				cout << "Lenght: " << motorBoat->getLenght() << endl;
-				cout << "Depth: " << motorBoat->getDepth() << endl;
+				case 1:
+				{
+					MotorBoat* motorBoat = new MotorBoat();
+					motorBoat->getMeasures();
+				}
 				break;
-			}
-			case 2: 
-			{
-				NarrowBoat* narrowBoat = new NarrowBoat(boatLenght, boatDepth);
-				cout << "\n\nDetails of the narrowboat" << endl;
-				cout << "Lenght: " << narrowBoat->getLenght() << endl;
-				cout << "Depth: " << narrowBoat->getDepth() << endl;
+				case 2:
+				{
+					NarrowBoat* narrowBoat = new NarrowBoat();
+					narrowBoat->getMeasures();
+				}
 				break;
-			}
-			case 3:
-			{
-				SailingBoat* sailingBoat = new SailingBoat(boatLenght, boatDepth);
-				cout << "\n\nDetails of the sailingboat" << endl;
-				cout << "Lenght: " << sailingBoat->getLenght() << endl;
-				cout << "Depth: " << sailingBoat->getDepth() << endl;
+				case 3:
+				{
+					SailingBoat* sailingBoat = new SailingBoat();
+					sailingBoat->getMeasures();
+				}
 				break;
 			}
 		}
+		break;
+
+		// Delete record
+		case 2: 
+		{
+			int deleteChoice;
+			HelperFunctions::printSubMenu(choice);
+			cin >> deleteChoice;
+
+			// switch (deleteChoice)
+		}
+		break;
+
+		// Show marina
+		case 3:
+		{
+			// print Marina information
+		}
+		break;
+
+		//Exit
+		case 4:
+		{
+			// Goodbye message
+		}
+		break;
+
+
 	}
 
 	system("PAUSE");

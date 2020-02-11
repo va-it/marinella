@@ -10,10 +10,7 @@ class MotorBoat :
 public:
 	MotorBoat();
 
-	MotorBoat(float lenght, float depth) : Boat(lenght, depth)
-	{
-		cout << "Motor Boat created";
-	};
+	MotorBoat(float lenght, float depth);
 
 	~MotorBoat();
 };
