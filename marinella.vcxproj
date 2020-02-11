@@ -116,12 +116,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Boat.h" />
+    <ClInclude Include="Marina.h" />
     <ClInclude Include="MotorBoat.h" />
     <ClInclude Include="NarrowBoat.h" />
     <ClInclude Include="SailingBoat.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Boat.cpp" />
+    <ClCompile Include="Marina.cpp" />
     <ClCompile Include="marinella.cpp" />
     <ClCompile Include="MotorBoat.cpp" />
     <ClCompile Include="NarrowBoat.cpp" />
