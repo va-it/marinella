@@ -10,8 +10,6 @@ class SailingBoat :
 public:
 	SailingBoat();
 
-	SailingBoat(float lenght, float depth);
-
 	~SailingBoat();
 };
 

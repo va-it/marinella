@@ -1,24 +1,25 @@
 #include "Boat.h"
-
-
+#include <string>
 
 Boat::Boat()
 {
-}
-
-Boat::Boat(float childLenght, float childDepth)
-{
-	lenght = childLenght;
-	depth = childDepth;
+	cout << "Please enter the lenght of the boat:\n>";
+	cin >> length;
+	cout << "Please enter the depth of the boat:\n>";
+	cin >> depth;
+	cout << "Please enter the name of the boat:\n>";
+	//https://stackoverflow.com/questions/3731529/program-is-skipping-over-getline-without-taking-user-input
+	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	getline(cin, name);
 }
 
 Boat::~Boat()
 {
 }
 
-float Boat::getLenght()
+float Boat::getLength()
 {
-	return lenght;
+	return length;
 }
 
 float Boat::getDepth()
@@ -28,9 +29,9 @@ float Boat::getDepth()
 
 void Boat::getMeasures()
 {
-	cout << "\n\nDetails of the boat" << endl;
-	cout << "Lenght: " << this->getLenght() << endl;
-	cout << "Depth: " << this->getDepth() << endl;
+	cout << "\nDetails of the boat:" << endl;
+	cout << "Lenght: " << length << endl;
+	cout << "Depth: " <<  depth << endl;
 }
 
 void Boat::getDetails()
@@ -38,12 +39,12 @@ void Boat::getDetails()
 }
 
 // ++++++++++++++++++ STATIC METHODS +++++++++++++++++
-float Boat::readLenght()
+float Boat::readLength()
 {
-	float boatLenght;
+	float boatLength;
 	cout << "Please enter the lenght of the boat: ";
-	cin >> boatLenght;
-	return boatLenght;
+	cin >> boatLength;
+	return boatLength;
 }
 
 float Boat::readDepth()

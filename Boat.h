@@ -5,17 +5,15 @@ using namespace std;
 class Boat
 {
 private:
-	
-	float lenght, depth;
+	string name;
+	float length, depth;
 
 public:
 	Boat();
-	
-	Boat(float childLenght, float childDepth);
 
 	~Boat();
 
-	float getLenght();
+	float getLength();
 	
 	float getDepth();
 
@@ -24,7 +22,7 @@ public:
 	void getDetails();
 
 	// ++++++++++++++++++ STATIC METHODS +++++++++++++++++
-	static float readLenght();
+	static float readLength();
 
 	static float readDepth();
 };

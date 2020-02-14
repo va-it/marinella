@@ -10,7 +10,5 @@ class NarrowBoat :
 public:
 	NarrowBoat();
 
-	NarrowBoat(float lenght, float depth);
-
 	~NarrowBoat();
 };

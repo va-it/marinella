@@ -3,7 +3,6 @@
 
 class Marina
 {
-
 	// CONSIDER MAKING THIS IS SINGLETON
 
 private:

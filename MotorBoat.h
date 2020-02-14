@@ -10,8 +10,6 @@ class MotorBoat :
 public:
 	MotorBoat();
 
-	MotorBoat(float lenght, float depth);
-
 	~MotorBoat();
 };
 

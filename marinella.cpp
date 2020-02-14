@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cstring>
+#include <list>
 
 #include "HelperFunctions.h"
 
@@ -15,72 +16,97 @@ using namespace std;
 
 int main(void)
 {
-	// =================== MENU ======================
+
+	
 	int choice;
-	HelperFunctions::printMenu();
-	cin >> choice;
-	// ===============================================
+	list<Boat*> mooredBoats;
 
-	switch (choice)
+	do
 	{
-		// New booking
-		case 1:
-		{
-			int boatChoice;
-			HelperFunctions::printSubMenu(choice);
-			cin >> boatChoice;
+		// =================== MENU ======================
+		HelperFunctions::printMenu();
+		// ===============================================
+		
+		// Needs validation
+		cin >> choice;
+		
 
-			switch (boatChoice)
+		switch (choice)
+		{
+			// New booking
+			case 1:
 			{
-				case 1:
+				int boatChoice;
+
+				// =================== MENU ======================
+				HelperFunctions::printSubMenu(choice);
+				// ===============================================
+
+				cin >> boatChoice;
+
+				switch (boatChoice)
 				{
-					MotorBoat* motorBoat = new MotorBoat();
-					motorBoat->getMeasures();
+					case 1:
+					{
+						MotorBoat* motorBoat = new MotorBoat();
+						//motorBoat->getMeasures();
+						mooredBoats.push_back(motorBoat);
+					}
+					break;
+					case 2:
+					{
+						NarrowBoat* narrowBoat = new NarrowBoat();
+						//narrowBoat->getMeasures();
+						mooredBoats.push_back(narrowBoat);
+					}
+					break;
+					case 3:
+					{
+						SailingBoat* sailingBoat = new SailingBoat();
+						//sailingBoat->getMeasures();
+						mooredBoats.push_back(sailingBoat);
+					}
+					break;
 				}
-				break;
-				case 2:
-				{
-					NarrowBoat* narrowBoat = new NarrowBoat();
-					narrowBoat->getMeasures();
-				}
-				break;
-				case 3:
-				{
-					SailingBoat* sailingBoat = new SailingBoat();
-					sailingBoat->getMeasures();
-				}
-				break;
 			}
-		}
-		break;
+			break;
 
-		// Delete record
-		case 2: 
+			// Delete record
+			case 2: 
+			{
+				int deleteChoice;
+				HelperFunctions::printSubMenu(choice);
+				cin >> deleteChoice;
+
+				// switch (deleteChoice)
+			}
+			break;
+
+			// Show marina
+			case 3:
+			{
+				// print Marina information
+			}
+			break;
+
+			//Exit
+			case 4:
+			{
+				// Goodbye message
+			}
+			break;
+		}
+
+		//https://stackoverflow.com/questions/16229729/printing-out-contents-of-a-list-from-the-c-list-library
+		for (auto b : mooredBoats)
 		{
-			int deleteChoice;
-			HelperFunctions::printSubMenu(choice);
-			cin >> deleteChoice;
-
-			// switch (deleteChoice)
+			cout << b->getDepth() << "\n";
 		}
-		break;
 
-		// Show marina
-		case 3:
-		{
-			// print Marina information
-		}
-		break;
-
-		//Exit
-		case 4:
-		{
-			// Goodbye message
-		}
-		break;
-
+	
 
 	}
+	while (choice != 4);
 
 	system("PAUSE");
 	return 0;
