@@ -10,10 +10,7 @@ class SailingBoat :
 public:
 	SailingBoat();
 
-	SailingBoat(float lenght, float depth) : Boat(lenght, depth)
-	{
-		cout << "Sailing Boat created";
-	};
+	SailingBoat(float lenght, float depth);
 
 	~SailingBoat();
 };

@@ -1,4 +1,7 @@
 #pragma once
+#include <iostream>
+using namespace std;
+
 class Boat
 {
 private:
@@ -8,22 +11,21 @@ private:
 public:
 	Boat();
 	
-	Boat(float childLenght, float childDepth)
-	{
-		lenght = childLenght;
-		depth = childDepth;
-	};
+	Boat(float childLenght, float childDepth);
 
 	~Boat();
 
-	float getLenght()
-	{
-		return lenght;
-	}
+	float getLenght();
+	
+	float getDepth();
 
-	float getDepth()
-	{
-		return depth;
-	}
+	void getMeasures();
+
+	void getDetails();
+
+	// ++++++++++++++++++ STATIC METHODS +++++++++++++++++
+	static float readLenght();
+
+	static float readDepth();
 };
 

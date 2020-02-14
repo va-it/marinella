@@ -10,10 +10,7 @@ class NarrowBoat :
 public:
 	NarrowBoat();
 
-	NarrowBoat(float lenght, float depth) : Boat(lenght, depth)
-	{
-		cout << "Narrow Boat created";
-	};
+	NarrowBoat(float lenght, float depth);
 
 	~NarrowBoat();
 };
