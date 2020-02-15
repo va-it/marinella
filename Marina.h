@@ -1,19 +1,26 @@
 #pragma once
+#include <list>
 #include "Boat.h"
 
 class Marina
 {
-	// CONSIDER MAKING THIS IS SINGLETON
-
 private:
-	float lenght;
+	float length;
+	static Marina *instance;
+
+	Marina();
 
 public:
-	Marina();
-	~Marina();
+	list<Boat*> mooredBoats;
 
-	float getRemainingSpace()
-	{
-	}
+	static Marina* getInstance();
+
+	float getRemainingSpace();
+
+	float getOccupiedSpace();
+
+	void displayMooredBoats();
+
+	~Marina();
 };
 

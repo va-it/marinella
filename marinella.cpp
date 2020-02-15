@@ -19,7 +19,7 @@ int main(void)
 
 	
 	int choice;
-	list<Boat*> mooredBoats;
+	Marina* marina = Marina::getInstance();
 
 	do
 	{
@@ -47,22 +47,19 @@ int main(void)
 				case 1:
 				{
 					MotorBoat* motorBoat = new MotorBoat();
-					//motorBoat->getMeasures();
-					mooredBoats.push_back(motorBoat);
+					marina->mooredBoats.push_back(motorBoat);
 				}
 				break;
 				case 2:
 				{
 					NarrowBoat* narrowBoat = new NarrowBoat();
-					//narrowBoat->getMeasures();
-					mooredBoats.push_back(narrowBoat);
+					marina->mooredBoats.push_back(narrowBoat);
 				}
 				break;
 				case 3:
 				{
 					SailingBoat* sailingBoat = new SailingBoat();
-					//sailingBoat->getMeasures();
-					mooredBoats.push_back(sailingBoat);
+					marina->mooredBoats.push_back(sailingBoat);
 				}
 				break;
 				}
@@ -83,12 +80,9 @@ int main(void)
 			// Show marina
 			case 3:
 			{
-				// print Marina information
-				//https://stackoverflow.com/questions/16229729/printing-out-contents-of-a-list-from-the-c-list-library
-				for (auto b : mooredBoats)
-				{
-					b->displayInfo();
-				}
+				marina->displayMooredBoats();
+
+				cout << "\n\nSpace left: " << marina->getRemainingSpace() << endl;
 			}
 			break;
 
