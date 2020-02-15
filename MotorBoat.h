@@ -11,5 +11,7 @@ public:
 	MotorBoat();
 
 	~MotorBoat();
+
+	void displayInfo();
 };
 

@@ -27,9 +27,7 @@ int main(void)
 		HelperFunctions::printMenu();
 		// ===============================================
 		
-		// Needs validation
 		cin >> choice;
-		
 
 		switch (choice)
 		{
@@ -46,33 +44,33 @@ int main(void)
 
 				switch (boatChoice)
 				{
-					case 1:
-					{
-						MotorBoat* motorBoat = new MotorBoat();
-						//motorBoat->getMeasures();
-						mooredBoats.push_back(motorBoat);
-					}
-					break;
-					case 2:
-					{
-						NarrowBoat* narrowBoat = new NarrowBoat();
-						//narrowBoat->getMeasures();
-						mooredBoats.push_back(narrowBoat);
-					}
-					break;
-					case 3:
-					{
-						SailingBoat* sailingBoat = new SailingBoat();
-						//sailingBoat->getMeasures();
-						mooredBoats.push_back(sailingBoat);
-					}
-					break;
+				case 1:
+				{
+					MotorBoat* motorBoat = new MotorBoat();
+					//motorBoat->getMeasures();
+					mooredBoats.push_back(motorBoat);
+				}
+				break;
+				case 2:
+				{
+					NarrowBoat* narrowBoat = new NarrowBoat();
+					//narrowBoat->getMeasures();
+					mooredBoats.push_back(narrowBoat);
+				}
+				break;
+				case 3:
+				{
+					SailingBoat* sailingBoat = new SailingBoat();
+					//sailingBoat->getMeasures();
+					mooredBoats.push_back(sailingBoat);
+				}
+				break;
 				}
 			}
 			break;
 
 			// Delete record
-			case 2: 
+			case 2:
 			{
 				int deleteChoice;
 				HelperFunctions::printSubMenu(choice);
@@ -86,6 +84,11 @@ int main(void)
 			case 3:
 			{
 				// print Marina information
+				//https://stackoverflow.com/questions/16229729/printing-out-contents-of-a-list-from-the-c-list-library
+				for (auto b : mooredBoats)
+				{
+					b->displayInfo();
+				}
 			}
 			break;
 
@@ -95,16 +98,16 @@ int main(void)
 				// Goodbye message
 			}
 			break;
+			default:
+			{
+				// Try again
+				cout << "Invalid input. Please try again" << endl;
+				cin.clear();
+			}
 		}
 
-		//https://stackoverflow.com/questions/16229729/printing-out-contents-of-a-list-from-the-c-list-library
-		for (auto b : mooredBoats)
-		{
-			cout << b->getDepth() << "\n";
-		}
-
-	
-
+		system("PAUSE");
+		HelperFunctions::clearScreen();
 	}
 	while (choice != 4);
 

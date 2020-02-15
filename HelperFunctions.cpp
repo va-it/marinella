@@ -12,6 +12,14 @@ HelperFunctions::~HelperFunctions()
 {
 }
 
+void HelperFunctions::clearScreen()
+{
+	if (system("CLS"))
+	{
+		system("clear");
+	}
+}
+
 void HelperFunctions::printMenu()
 {
 	cout << "@@@@@@@@@@@@@@ MARINELLA (R) - Marina Berth Booking System @@@@@@@@@@@@@" << endl;

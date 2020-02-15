@@ -10,3 +10,9 @@ SailingBoat::SailingBoat()
 SailingBoat::~SailingBoat()
 {
 }
+
+void SailingBoat::displayInfo()
+{
+	cout << "this is a sailing boat";
+	Boat::displayInfo();
+}

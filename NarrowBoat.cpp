@@ -9,3 +9,9 @@ NarrowBoat::NarrowBoat()
 NarrowBoat::~NarrowBoat()
 {
 }
+
+void NarrowBoat::displayInfo()
+{
+	cout << "this is a narrow boat";
+	Boat::displayInfo();
+}

@@ -34,8 +34,10 @@ void Boat::getMeasures()
 	cout << "Depth: " <<  depth << endl;
 }
 
-void Boat::getDetails()
+void Boat::displayInfo() 
 {
+	Boat::getMeasures();
+	cout << "Name: " << name << endl;
 }
 
 // ++++++++++++++++++ STATIC METHODS +++++++++++++++++

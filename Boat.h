@@ -19,7 +19,7 @@ public:
 
 	void getMeasures();
 
-	void getDetails();
+	virtual void displayInfo();
 
 	// ++++++++++++++++++ STATIC METHODS +++++++++++++++++
 	static float readLength();

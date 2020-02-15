@@ -11,4 +11,6 @@ public:
 	NarrowBoat();
 
 	~NarrowBoat();
+
+	void displayInfo();
 };

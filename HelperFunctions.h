@@ -8,6 +8,9 @@ private:
 	HelperFunctions();
 	~HelperFunctions();
 public:
+
+	static void clearScreen();
+
 	static void printMenu();
 
 	static void printSubMenu(int choice);

@@ -10,3 +10,9 @@ MotorBoat::MotorBoat() : Boat()
 MotorBoat::~MotorBoat()
 {
 }
+
+void MotorBoat::displayInfo()
+{
+	cout << "this is a motor boat";
+	Boat::displayInfo();
+}

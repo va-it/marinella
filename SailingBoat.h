@@ -11,5 +11,7 @@ public:
 	SailingBoat();
 
 	~SailingBoat();
+
+	void displayInfo();
 };
 
