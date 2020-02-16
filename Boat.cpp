@@ -27,6 +27,11 @@ float Boat::getDepth()
 	return depth;
 }
 
+string Boat::getName()
+{
+	return name;
+}
+
 void Boat::getMeasures()
 {
 	cout << "\nDetails of the boat:" << endl;

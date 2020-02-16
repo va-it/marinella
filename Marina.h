@@ -5,13 +5,13 @@
 class Marina
 {
 private:
-	float length;
+	float length, maxBoatLength, maxBoatDepth;
 	static Marina *instance;
 
 	Marina();
 
 public:
-	list<Boat*> mooredBoats;
+	list<Boat*> mooredBoats, holdingBay;
 
 	static Marina* getInstance();
 
@@ -20,6 +20,10 @@ public:
 	float getOccupiedSpace();
 
 	void displayMooredBoats();
+
+	void displayHoldingBay();
+
+	list<Boat*>::iterator searchMooredBoatByName(string boatName);
 
 	~Marina();
 };

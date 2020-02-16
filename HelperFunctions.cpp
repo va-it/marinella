@@ -43,9 +43,7 @@ void HelperFunctions::printSubMenu(int choice)
 		}
 		case 2:
 		{
-			cout << "Do you know the ID of the record that you want to delete?" << endl;
-			cout << "1. Yes" << endl;
-			cout << "2. No, let me search by boat name" << endl;
+			cout << "Enter the name of the boat to delete:" << endl;
 			break;
 		}
 	}

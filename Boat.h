@@ -17,6 +17,8 @@ public:
 	
 	float getDepth();
 
+	string getName();
+
 	void getMeasures();
 
 	virtual void displayInfo();

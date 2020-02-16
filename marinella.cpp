@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <list>
+#include <string>
 
 #include "HelperFunctions.h"
 
@@ -17,9 +18,9 @@ using namespace std;
 int main(void)
 {
 
-	
-	int choice;
 	Marina* marina = Marina::getInstance();
+
+	int choice;
 
 	do
 	{
@@ -69,11 +70,41 @@ int main(void)
 			// Delete record
 			case 2:
 			{
-				int deleteChoice;
-				HelperFunctions::printSubMenu(choice);
-				cin >> deleteChoice;
+				string nameOfBoatToDelete;
 
-				// switch (deleteChoice)
+				HelperFunctions::printSubMenu(choice);
+
+				//https://stackoverflow.com/questions/3731529/program-is-skipping-over-getline-without-taking-user-input
+				cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				getline(cin, nameOfBoatToDelete);
+
+	
+				list<Boat*>::iterator boatPosition;
+				boatPosition = marina->searchMooredBoatByName(nameOfBoatToDelete);
+
+				// To move boats between lists use splice
+				// http://www.cplusplus.com/reference/list/list/splice/
+				// This moves all the boats behind the one to delete into the holding bay.
+				advance(boatPosition, 1);
+				marina->holdingBay.splice(marina->holdingBay.begin(),marina->mooredBoats,boatPosition,marina->mooredBoats.end());
+
+				cout << "Moving boats into the holding bay..." << endl;
+
+				cout << "Moored boats:" << endl;
+				marina->displayMooredBoats();
+				cout << "\nHolding bay: " << endl;
+				marina->displayHoldingBay();
+
+				cout << "=============" << endl;
+				cout << "\nBoat" << nameOfBoatToDelete << "leaving the marina..." << endl;
+				marina->mooredBoats.pop_back();
+ 
+				marina->mooredBoats.splice(marina->mooredBoats.end(), marina->holdingBay);
+				cout << "\n\nMoored boats:" << endl;
+				marina->displayMooredBoats();
+				cout << "\nHolding bay: " << endl;
+				marina->displayHoldingBay();
+
 			}
 			break;
 
