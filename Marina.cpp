@@ -55,16 +55,16 @@ void Marina::displayHoldingBay()
 list<Boat*>::iterator Marina::searchMooredBoatByName(string boatName)
 {
 	list<Boat*>::iterator iterator = mooredBoats.begin();
-	int position = 1;
-	for (auto b : mooredBoats)
+	for (auto boat : mooredBoats)
 	{
-		if (b->getName() == boatName)
+		if (boat->getName() == boatName)
 		{
 			return iterator;
 		}
-		advance(iterator, position);
+		advance(iterator, 1);
 	}
-	return iterator;
+	// return an invalid position to signify no boat found
+	return mooredBoats.end();
 }
 
 Marina::~Marina()

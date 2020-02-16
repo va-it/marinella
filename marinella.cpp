@@ -81,30 +81,37 @@ int main(void)
 	
 				list<Boat*>::iterator boatPosition;
 				boatPosition = marina->searchMooredBoatByName(nameOfBoatToDelete);
-
-				// To move boats between lists use splice
+				
+				// searchMooredBoatByName returns iterator to last element if boat not found 
+				if (boatPosition != marina->mooredBoats.end())
+				{
+					// To move boats between lists use splice
 				// http://www.cplusplus.com/reference/list/list/splice/
 				// This moves all the boats behind the one to delete into the holding bay.
-				advance(boatPosition, 1);
-				marina->holdingBay.splice(marina->holdingBay.begin(),marina->mooredBoats,boatPosition,marina->mooredBoats.end());
+					advance(boatPosition, 1);
+					marina->holdingBay.splice(marina->holdingBay.begin(), marina->mooredBoats, boatPosition, marina->mooredBoats.end());
 
-				cout << "Moving boats into the holding bay..." << endl;
+					cout << "Moving boats into the holding bay..." << endl;
 
-				cout << "Moored boats:" << endl;
-				marina->displayMooredBoats();
-				cout << "\nHolding bay: " << endl;
-				marina->displayHoldingBay();
+					cout << "Moored boats:" << endl;
+					marina->displayMooredBoats();
+					cout << "\nHolding bay: " << endl;
+					marina->displayHoldingBay();
 
-				cout << "=============" << endl;
-				cout << "\nBoat" << nameOfBoatToDelete << "leaving the marina..." << endl;
-				marina->mooredBoats.pop_back();
- 
-				marina->mooredBoats.splice(marina->mooredBoats.end(), marina->holdingBay);
-				cout << "\n\nMoored boats:" << endl;
-				marina->displayMooredBoats();
-				cout << "\nHolding bay: " << endl;
-				marina->displayHoldingBay();
+					cout << "=============" << endl;
+					cout << "\nBoat " << nameOfBoatToDelete << " leaving the marina..." << endl;
+					marina->mooredBoats.pop_back();
 
+					marina->mooredBoats.splice(marina->mooredBoats.end(), marina->holdingBay);
+					cout << "\n\nMoored boats:" << endl;
+					marina->displayMooredBoats();
+					cout << "\nHolding bay: " << endl;
+					marina->displayHoldingBay();
+				}
+				else
+				{
+					cout << "Boat not found" << endl;
+				}
 			}
 			break;
 
