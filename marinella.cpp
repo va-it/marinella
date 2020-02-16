@@ -110,6 +110,7 @@ int main(void)
 				// Try again
 				cout << "Invalid input. Please try again" << endl;
 				cin.clear();
+				// BUG - AFTER ENTERING LETTER, SYSTEM DOES NOT LISTEN TO INPUT ANY MORE
 			}
 		}
 
