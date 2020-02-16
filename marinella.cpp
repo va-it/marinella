@@ -20,6 +20,8 @@ int main(void)
 
 	Marina* marina = Marina::getInstance();
 
+	Boat* incomingBoat = NULL;
+
 	int choice;
 
 	do
@@ -35,34 +37,71 @@ int main(void)
 			// New booking
 			case 1:
 			{
-				int boatChoice;
-
+				int boatType;
+				
 				// =================== MENU ======================
-				HelperFunctions::printSubMenu(choice);
+				HelperFunctions::printSubMenu(choice, 1);
 				// ===============================================
 
-				cin >> boatChoice;
+				cin >> boatType;
 
-				switch (boatChoice)
+				switch (boatType)
 				{
-				case 1:
-				{
-					MotorBoat* motorBoat = new MotorBoat();
-					marina->mooredBoats.push_back(motorBoat);
+					case 1:
+					{
+						MotorBoat* motorBoat = new MotorBoat();
+						incomingBoat = motorBoat;
+					}
+					break;
+					case 2:
+					{
+						NarrowBoat* narrowBoat = new NarrowBoat();
+						incomingBoat = narrowBoat;
+					}
+					break;
+					case 3:
+					{
+						SailingBoat* sailingBoat = new SailingBoat();
+						incomingBoat = sailingBoat;
+					}
+					break;
+					default:
+					{
+						// No type matched. Ask again.
+					}
 				}
-				break;
-				case 2:
+
+				// check that there is enough space 
+				if (marina->isBoatAllowed(incomingBoat))
 				{
-					NarrowBoat* narrowBoat = new NarrowBoat();
-					marina->mooredBoats.push_back(narrowBoat);
+					// If yes, then get duration of stay
+					incomingBoat->askAndSetBookingDuration();
+
+					// calculate price and ask confirmation
+					marina->calculateAndDisplayBookingCost(incomingBoat);
+
+					// user can confirm or reject
+					int confirmation;
+					HelperFunctions::printSubMenu(choice, 2);
+					cin >> confirmation;
+
+					if (confirmation == 1)
+					{
+						// if confirmed get boat and owner name
+						incomingBoat->askAndSetBoatName();
+						incomingBoat->askAndSetOwnerName();
+						// boat can be moored
+						marina->mooredBoats.push_back(incomingBoat);
+					}
+					else
+					{
+						//user has declined offer
+						cout << "Sorry, we hope to see you again." << endl;
+					}
 				}
-				break;
-				case 3:
+				else
 				{
-					SailingBoat* sailingBoat = new SailingBoat();
-					marina->mooredBoats.push_back(sailingBoat);
-				}
-				break;
+					cout << "Boat is not allowed" << endl;
 				}
 			}
 			break;
@@ -72,14 +111,14 @@ int main(void)
 			{
 				string nameOfBoatToDelete;
 
-				HelperFunctions::printSubMenu(choice);
+				HelperFunctions::printSubMenu(choice, 1);
 
-				nameOfBoatToDelete = HelperFunctions::getStringInput(nameOfBoatToDelete);
+				nameOfBoatToDelete = HelperFunctions::getStringInput();
 
 				list<Boat*>::iterator positionOfBoatToDelete;
 				positionOfBoatToDelete = marina->searchMooredBoatByName(nameOfBoatToDelete);
 				
-				// searchMooredBoatByName returns iterator to last element if a boat is not found 
+				// searchMooredBoatByName returns iterator to last if a boat is not found 
 				if (positionOfBoatToDelete != marina->mooredBoats.end())
 				{
 					marina->removeBoatFromMarina(positionOfBoatToDelete);

@@ -6,6 +6,7 @@ Marina::Marina()
 	length = 150;
 	maxBoatLength = 15;
 	maxBoatDepth = 5;
+	costPerMeterPerMonth = 10;
 }
 
 Marina* Marina::getInstance()
@@ -36,6 +37,15 @@ float Marina::getOccupiedSpace()
 	return totalLength;
 }
 
+bool Marina::isBoatAllowed(Boat* boat)
+{
+	if (boat->getDepth() <= maxBoatDepth && boat->getLength() <= Marina::getRemainingSpace())
+	{
+		return true;
+	}
+	return false;
+}
+
 void Marina::displayMooredBoats()
 {
 	for (auto boat : mooredBoats)
@@ -58,7 +68,7 @@ list<Boat*>::iterator Marina::searchMooredBoatByName(string boatName)
 	list<Boat*>::iterator iterator = mooredBoats.begin();
 	for (auto boat : mooredBoats)
 	{
-		if (boat->getName() == boatName)
+		if (boat->getBoatName() == boatName)
 		{
 			return iterator;
 		}
@@ -72,6 +82,7 @@ list<Boat*>::iterator Marina::searchMooredBoatByName(string boatName)
 
 void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
 {
+	string nameOfBoatToDelete = (*positionOfBoatToDelete)->getBoatName();
 	// To move boats between lists use splice
 	// http://www.cplusplus.com/reference/list/list/splice/
 	// This moves all the boats behind the one to delete (hence advance of 1)
@@ -87,7 +98,7 @@ void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
 	displayHoldingBay();
 
 	cout << "=============" << endl;
-	cout << "\nBoat " << (*positionOfBoatToDelete)->getName() << " leaving the marina..." << endl;
+	cout << "\nBoat " << nameOfBoatToDelete << " leaving the marina..." << endl;
 	mooredBoats.pop_back();
 
 	mooredBoats.splice(mooredBoats.end(), holdingBay);
@@ -95,6 +106,12 @@ void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
 	displayMooredBoats();
 	cout << "\nHolding bay: " << endl;
 	displayHoldingBay();
+}
+
+void Marina::calculateAndDisplayBookingCost(Boat* boat)
+{
+	float costToDisplay = (costPerMeterPerMonth * boat->getLength()) * (boat->getBookingDuration());
+	cout << "The calculated cost for this booking is: " << costToDisplay << endl;
 }
 
 Marina::~Marina()

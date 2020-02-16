@@ -5,8 +5,9 @@ using namespace std;
 class Boat
 {
 private:
-	string name;
+	string boatName, ownerName;
 	float length, depth;
+	int bookingDuration;
 
 public:
 	Boat();
@@ -17,9 +18,29 @@ public:
 	
 	float getDepth();
 
-	string getName();
+	string getBoatName();
 
-	void getMeasures();
+	void setBoatName(string boatNameInput);
+
+	string getOwnerName();
+
+	void setOwnerName(string ownerNameInput);
+
+	int getBookingDuration();
+
+	void setBookingDuration(int bookingDurationInput);
+
+	void askAndSetBookingDuration();
+
+	void askAndSetBoatName();
+
+	void askAndSetOwnerName();
+
+	void displayMeasures();
+
+	void displayBoatName();
+
+	void displayOwnerName();
 
 	virtual void displayInfo();
 

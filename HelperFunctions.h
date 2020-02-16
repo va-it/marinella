@@ -9,12 +9,12 @@ private:
 	~HelperFunctions();
 public:
 
-	static string getStringInput(string input);
+	static string getStringInput();
 
 	static void clearScreen();
 
 	static void printMenu();
 
-	static void printSubMenu(int choice);
+	static void printSubMenu(int choice, int level);
 };
 

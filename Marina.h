@@ -5,7 +5,7 @@
 class Marina
 {
 private:
-	float length, maxBoatLength, maxBoatDepth;
+	float length, maxBoatLength, maxBoatDepth, costPerMeterPerMonth;
 	static Marina *instance;
 
 	Marina();
@@ -19,6 +19,8 @@ public:
 
 	float getOccupiedSpace();
 
+	bool isBoatAllowed(Boat* boat);
+
 	void displayMooredBoats();
 
 	void displayHoldingBay();
@@ -26,6 +28,8 @@ public:
 	list<Boat*>::iterator searchMooredBoatByName(string boatName);
 
 	void removeBoatFromMarina(list<Boat*>::iterator);
+
+	void calculateAndDisplayBookingCost(Boat* boat);
 
 	~Marina();
 };
