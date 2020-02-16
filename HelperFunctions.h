@@ -9,6 +9,8 @@ private:
 	~HelperFunctions();
 public:
 
+	static string getStringInput(string input);
+
 	static void clearScreen();
 
 	static void printMenu();

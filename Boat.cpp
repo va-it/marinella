@@ -1,4 +1,5 @@
 #include "Boat.h"
+#include "HelperFunctions.h"
 #include <string>
 
 Boat::Boat()
@@ -8,9 +9,7 @@ Boat::Boat()
 	cout << "Please enter the depth of the boat:\n>";
 	cin >> depth;
 	cout << "Please enter the name of the boat:\n>";
-	//https://stackoverflow.com/questions/3731529/program-is-skipping-over-getline-without-taking-user-input
-	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	getline(cin, name);
+	name = HelperFunctions::getStringInput(name);
 }
 
 Boat::~Boat()

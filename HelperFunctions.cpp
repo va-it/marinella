@@ -12,6 +12,14 @@ HelperFunctions::~HelperFunctions()
 {
 }
 
+string HelperFunctions::getStringInput(string input)
+{
+	//https://stackoverflow.com/questions/3731529/program-is-skipping-over-getline-without-taking-user-input
+	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	getline(cin, input);
+	return input;
+}
+
 void HelperFunctions::clearScreen()
 {
 	if (system("CLS"))

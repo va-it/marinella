@@ -1,4 +1,5 @@
 #include "Marina.h"
+#include <string>
 
 Marina::Marina()
 {
@@ -63,8 +64,37 @@ list<Boat*>::iterator Marina::searchMooredBoatByName(string boatName)
 		}
 		advance(iterator, 1);
 	}
-	// return an invalid position to signify no boat found
+	// return last position if no matching boat is found
+	// same behaviour as find function
+	// http://www.cplusplus.com/reference/algorithm/find/
 	return mooredBoats.end();
+}
+
+void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
+{
+	// To move boats between lists use splice
+	// http://www.cplusplus.com/reference/list/list/splice/
+	// This moves all the boats behind the one to delete (hence advance of 1)
+	// into the holding bay.
+	advance(positionOfBoatToDelete, 1);
+	holdingBay.splice(holdingBay.begin(), mooredBoats, positionOfBoatToDelete, mooredBoats.end());
+
+	cout << "Moving boats into the holding bay..." << endl;
+
+	cout << "Moored boats:" << endl;
+	displayMooredBoats();
+	cout << "\nHolding bay: " << endl;
+	displayHoldingBay();
+
+	cout << "=============" << endl;
+	cout << "\nBoat " << (*positionOfBoatToDelete)->getName() << " leaving the marina..." << endl;
+	mooredBoats.pop_back();
+
+	mooredBoats.splice(mooredBoats.end(), holdingBay);
+	cout << "\n\nMoored boats:" << endl;
+	displayMooredBoats();
+	cout << "\nHolding bay: " << endl;
+	displayHoldingBay();
 }
 
 Marina::~Marina()

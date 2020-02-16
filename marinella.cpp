@@ -74,39 +74,15 @@ int main(void)
 
 				HelperFunctions::printSubMenu(choice);
 
-				//https://stackoverflow.com/questions/3731529/program-is-skipping-over-getline-without-taking-user-input
-				cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-				getline(cin, nameOfBoatToDelete);
+				nameOfBoatToDelete = HelperFunctions::getStringInput(nameOfBoatToDelete);
 
-	
-				list<Boat*>::iterator boatPosition;
-				boatPosition = marina->searchMooredBoatByName(nameOfBoatToDelete);
+				list<Boat*>::iterator positionOfBoatToDelete;
+				positionOfBoatToDelete = marina->searchMooredBoatByName(nameOfBoatToDelete);
 				
-				// searchMooredBoatByName returns iterator to last element if boat not found 
-				if (boatPosition != marina->mooredBoats.end())
+				// searchMooredBoatByName returns iterator to last element if a boat is not found 
+				if (positionOfBoatToDelete != marina->mooredBoats.end())
 				{
-					// To move boats between lists use splice
-				// http://www.cplusplus.com/reference/list/list/splice/
-				// This moves all the boats behind the one to delete into the holding bay.
-					advance(boatPosition, 1);
-					marina->holdingBay.splice(marina->holdingBay.begin(), marina->mooredBoats, boatPosition, marina->mooredBoats.end());
-
-					cout << "Moving boats into the holding bay..." << endl;
-
-					cout << "Moored boats:" << endl;
-					marina->displayMooredBoats();
-					cout << "\nHolding bay: " << endl;
-					marina->displayHoldingBay();
-
-					cout << "=============" << endl;
-					cout << "\nBoat " << nameOfBoatToDelete << " leaving the marina..." << endl;
-					marina->mooredBoats.pop_back();
-
-					marina->mooredBoats.splice(marina->mooredBoats.end(), marina->holdingBay);
-					cout << "\n\nMoored boats:" << endl;
-					marina->displayMooredBoats();
-					cout << "\nHolding bay: " << endl;
-					marina->displayHoldingBay();
+					marina->removeBoatFromMarina(positionOfBoatToDelete);
 				}
 				else
 				{
@@ -118,9 +94,8 @@ int main(void)
 			// Show marina
 			case 3:
 			{
-				marina->displayMooredBoats();
-
 				cout << "\n\nSpace left: " << marina->getRemainingSpace() << endl;
+				marina->displayMooredBoats();
 			}
 			break;
 

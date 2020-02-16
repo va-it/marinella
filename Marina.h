@@ -25,6 +25,8 @@ public:
 
 	list<Boat*>::iterator searchMooredBoatByName(string boatName);
 
+	void removeBoatFromMarina(list<Boat*>::iterator);
+
 	~Marina();
 };
 
