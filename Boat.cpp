@@ -74,9 +74,7 @@ void Boat::askAndSetOwnerName()
 
 void Boat::displayMeasures()
 {
-	cout << "\nMeasures of the boat:" << endl;
-	cout << "Lenght: " << length << endl;
-	cout << "Depth: " <<  depth << endl;
+	cout << "Boat lenght: " << length << " | " << "Boat depth: " <<  depth << endl;
 }
 
 void Boat::displayBoatName()
@@ -89,12 +87,15 @@ void Boat::displayOwnerName()
 	cout << "Owner Name: " << ownerName << endl;
 }
 
+void Boat::displayBoatAndOwnerNames()
+{
+	cout << "Boat Name: " << boatName << " | " << "Owner Name: " << ownerName << endl;
+}
+
 void Boat::displayInfo() 
 {
-	cout << "\nDetails of the boat:" << endl;
 	Boat::displayMeasures();
-	Boat::displayBoatName();
-	Boat::displayOwnerName();
+	Boat::displayBoatAndOwnerNames();
 }
 
 // ++++++++++++++++++ STATIC METHODS +++++++++++++++++

@@ -13,6 +13,13 @@ MotorBoat::~MotorBoat()
 
 void MotorBoat::displayInfo()
 {
-	cout << "this is a motor boat";
+	//https://asciiart.website/index.php?art=transportation/nautical
+	cout << "\n ********* Motor boat **********" << endl;
+	cout << "                  __ /___" << endl;
+	cout << "          _____ / ______|" << endl;
+	cout << " _______ / _____\\_______\\_____" << endl;
+	cout << " \\              < < <         |" << endl;
+	cout << " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+
 	Boat::displayInfo();
 }

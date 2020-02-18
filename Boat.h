@@ -42,6 +42,8 @@ public:
 
 	void displayOwnerName();
 
+	void displayBoatAndOwnerNames();
+
 	virtual void displayInfo();
 
 	// ++++++++++++++++++ STATIC METHODS +++++++++++++++++

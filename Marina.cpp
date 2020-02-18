@@ -48,18 +48,36 @@ bool Marina::isBoatAllowed(Boat* boat)
 
 void Marina::displayMooredBoats()
 {
-	for (auto boat : mooredBoats)
+	if (!mooredBoats.empty())
 	{
-		boat->displayInfo();
+		cout << "\n===== Moored boats ("<< mooredBoats.size() << ") =====" << endl;
+		for (auto boat : mooredBoats)
+		{
+			boat->displayInfo();
+		}
 	}
+	else
+	{
+		cout << "===== No boats moored =====" << endl;
+	}
+	
 }
 
 void Marina::displayHoldingBay()
 {
-	for (auto boat : holdingBay)
+	if (!holdingBay.empty())
 	{
-		boat->displayInfo();
+		cout << "\n===== Boats in the holding bay (" << holdingBay.size() << ") =====" << endl;
+		for (auto boat : holdingBay)
+		{
+			boat->displayInfo();
+		}
 	}
+	else
+	{
+		cout << "===== Holding bay is empty =====" << endl;
+	}
+	
 }
 
 //http://www.cplusplus.com/reference/list/list/splice/
@@ -90,22 +108,24 @@ void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
 	advance(positionOfBoatToDelete, 1);
 	holdingBay.splice(holdingBay.begin(), mooredBoats, positionOfBoatToDelete, mooredBoats.end());
 
-	cout << "Moving boats into the holding bay..." << endl;
+	cout << "***** Moving boats into the holding bay... *****" << endl;
 
-	cout << "Moored boats:" << endl;
 	displayMooredBoats();
-	cout << "\nHolding bay: " << endl;
 	displayHoldingBay();
 
-	cout << "=============" << endl;
+	cout << "\n==========" << endl;
 	cout << "\nBoat " << nameOfBoatToDelete << " leaving the marina..." << endl;
 	mooredBoats.pop_back();
 
+	cout << "\n==========" << endl;
+	cout << "\n***** Moving boats back into the marina... *****" << endl;
 	mooredBoats.splice(mooredBoats.end(), holdingBay);
-	cout << "\n\nMoored boats:" << endl;
+
 	displayMooredBoats();
-	cout << "\nHolding bay: " << endl;
 	displayHoldingBay();
+
+	// free up memory
+	delete *positionOfBoatToDelete;
 }
 
 void Marina::calculateAndDisplayBookingCost(Boat* boat)
