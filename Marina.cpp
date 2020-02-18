@@ -50,7 +50,8 @@ void Marina::displayMooredBoats()
 {
 	if (!mooredBoats.empty())
 	{
-		cout << "\n===== Moored boats ("<< mooredBoats.size() << ") =====" << endl;
+		cout << "\n========== Moored boats";
+		cout << "(" << mooredBoats.size() << ") =====" << endl;
 		for (auto boat : mooredBoats)
 		{
 			boat->displayInfo();
@@ -58,7 +59,7 @@ void Marina::displayMooredBoats()
 	}
 	else
 	{
-		cout << "===== No boats moored =====" << endl;
+		cout << "========== No boats moored ==========" << endl;
 	}
 	
 }
@@ -67,7 +68,8 @@ void Marina::displayHoldingBay()
 {
 	if (!holdingBay.empty())
 	{
-		cout << "\n===== Boats in the holding bay (" << holdingBay.size() << ") =====" << endl;
+		cout << "\n========== Boats in the holding bay";
+		cout << "(" << holdingBay.size() << ") ==========" << endl;
 		for (auto boat : holdingBay)
 		{
 			boat->displayInfo();
@@ -75,9 +77,17 @@ void Marina::displayHoldingBay()
 	}
 	else
 	{
-		cout << "===== Holding bay is empty =====" << endl;
+		cout << "========== Holding bay is empty ==========" << endl;
 	}
 	
+}
+
+void Marina::displayMarinaInformation()
+{
+	cout << "\n%%%%%%%%%% MARINA INFORMATION %%%%%%%%%%" << endl;
+	cout << "\n\nSpace left: " << getRemainingSpace() << endl;
+	displayMooredBoats();
+	displayHoldingBay();
 }
 
 //http://www.cplusplus.com/reference/list/list/splice/
@@ -108,17 +118,16 @@ void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
 	advance(positionOfBoatToDelete, 1);
 	holdingBay.splice(holdingBay.begin(), mooredBoats, positionOfBoatToDelete, mooredBoats.end());
 
-	cout << "***** Moving boats into the holding bay... *****" << endl;
+	cout << ">>>>> Moving boats into the holding bay... >>>>>" << endl;
 
 	displayMooredBoats();
 	displayHoldingBay();
 
-	cout << "\n==========" << endl;
+	// Highlight this section a bit more.
 	cout << "\nBoat " << nameOfBoatToDelete << " leaving the marina..." << endl;
 	mooredBoats.pop_back();
 
-	cout << "\n==========" << endl;
-	cout << "\n***** Moving boats back into the marina... *****" << endl;
+	cout << "\n<<<<< Moving boats back into the marina... <<<<<" << endl;
 	mooredBoats.splice(mooredBoats.end(), holdingBay);
 
 	displayMooredBoats();

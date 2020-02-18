@@ -47,8 +47,8 @@ public:
 	virtual void displayInfo();
 
 	// ++++++++++++++++++ STATIC METHODS +++++++++++++++++
-	static float readLength();
+	static float askAndSetLength();
 
-	static float readDepth();
+	static float ansAndSetDepth();
 };
 

@@ -96,21 +96,22 @@ void Boat::displayInfo()
 {
 	Boat::displayMeasures();
 	Boat::displayBoatAndOwnerNames();
+	cout << "\n";
 }
 
 // ++++++++++++++++++ STATIC METHODS +++++++++++++++++
-float Boat::readLength()
+float Boat::askAndSetLength()
 {
 	float boatLength;
-	cout << "Please enter the lenght of the boat: ";
+	cout << "Please enter the lenght of the boat:\n>";
 	cin >> boatLength;
 	return boatLength;
 }
 
-float Boat::readDepth()
+float Boat::ansAndSetDepth()
 {
 	float boatDepth;
-	cout << "Please enter the depth of the boat: ";
+	cout << "Please enter the depth of the boat:\n>";
 	cin >> boatDepth;
 	return boatDepth;
 }

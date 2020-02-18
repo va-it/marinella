@@ -12,12 +12,12 @@ NarrowBoat::~NarrowBoat()
 
 void NarrowBoat::displayInfo()
 {
-	//https ://asciiart.website/index.php?art=transportation/nautical
-	cout << "\n *************** Narrow boat **************" << endl;
-	cout << "        ________________________" << endl;
-	cout << " ______/  /___/  /___/  /___/  \\________" << endl;
-	cout << " \\ = : : : : : : : : : : : : : : : : : /" << endl;
-	cout << " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	//Based on drawings from https ://asciiart.website/index.php?art=transportation/nautical
+	cout << "\n********** Narrow boat **********" << endl;
+	cout << "        _________________" << endl;
+	cout << " ______/  /___/  /___/  \\________" << endl;
+	cout << " \\ = : : : :  : : : : : : : : : /" << endl;
+	cout << " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 
 	Boat::displayInfo();
 }

@@ -25,6 +25,8 @@ public:
 
 	void displayHoldingBay();
 
+	void displayMarinaInformation();
+
 	list<Boat*>::iterator searchMooredBoatByName(string boatName);
 
 	void removeBoatFromMarina(list<Boat*>::iterator);

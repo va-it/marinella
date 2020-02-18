@@ -133,8 +133,8 @@ int main(void)
 			// Show marina
 			case 3:
 			{
-				cout << "\n\nSpace left: " << marina->getRemainingSpace() << endl;
-				marina->displayMooredBoats();
+				//Nicely display the space left, the moored boats and the holding bay
+				marina->displayMarinaInformation();
 			}
 			break;
 
