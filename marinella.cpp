@@ -20,8 +20,6 @@ int main(void)
 
 	Marina* marina = Marina::getInstance();
 
-	Boat* incomingBoat = NULL;
-
 	int choice;
 
 	do
@@ -29,7 +27,7 @@ int main(void)
 		// =================== MENU ======================
 		HelperFunctions::printMenu();
 		// ===============================================
-		
+
 		cin >> choice;
 
 		switch (choice)
@@ -38,6 +36,7 @@ int main(void)
 			case 1:
 			{
 				int boatType;
+				Boat* incomingBoat = NULL;
 				
 				// =================== MENU ======================
 				HelperFunctions::printSubMenu(choice, 1);
@@ -45,6 +44,8 @@ int main(void)
 
 				cin >> boatType;
 
+				// NEED TO VALIDATE BOATTYPE
+				
 				switch (boatType)
 				{
 					case 1:
@@ -68,6 +69,7 @@ int main(void)
 					default:
 					{
 						// No type matched. Ask again.
+						HelperFunctions::printInvalidInputMessage();
 					}
 				}
 
@@ -84,6 +86,9 @@ int main(void)
 					int confirmation;
 					HelperFunctions::printSubMenu(choice, 2);
 					cin >> confirmation;
+
+					// Change confirmation into single character (y/n)
+					// and check for different characters.
 
 					if (confirmation == 1)
 					{
@@ -147,9 +152,7 @@ int main(void)
 			default:
 			{
 				// Try again
-				cout << "Invalid input. Please try again" << endl;
-				cin.clear();
-				// BUG - AFTER ENTERING LETTER, SYSTEM DOES NOT LISTEN TO INPUT ANY MORE
+				HelperFunctions::printInvalidInputMessage();
 			}
 		}
 

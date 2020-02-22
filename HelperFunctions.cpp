@@ -12,11 +12,17 @@ HelperFunctions::~HelperFunctions()
 {
 }
 
+void HelperFunctions::ignoreCin()
+{
+	cin.clear();
+	//https://stackoverflow.com/questions/3731529/program-is-skipping-over-getline-without-taking-user-input
+	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
 string HelperFunctions::getStringInput()
 {
 	string input;
-	//https://stackoverflow.com/questions/3731529/program-is-skipping-over-getline-without-taking-user-input
-	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	ignoreCin();
 	getline(cin, input);
 	return input;
 }
@@ -77,6 +83,10 @@ void HelperFunctions::printSubMenu(int choice, int level)
 		}
 		break;
 	}
+}
 
-	
+void HelperFunctions::printInvalidInputMessage()
+{
+	cout << "Invalid input. Please try again" << endl;
+	ignoreCin();
 }

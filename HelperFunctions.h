@@ -9,6 +9,8 @@ private:
 	~HelperFunctions();
 public:
 
+	static void ignoreCin();
+
 	static string getStringInput();
 
 	static void clearScreen();
@@ -16,5 +18,7 @@ public:
 	static void printMenu();
 
 	static void printSubMenu(int choice, int level);
+
+	static void printInvalidInputMessage();
 };
 

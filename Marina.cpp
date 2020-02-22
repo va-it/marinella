@@ -15,6 +15,7 @@ Marina* Marina::getInstance()
 	{
 		instance = new Marina();
 	}
+
 	return instance;
 }
 
@@ -43,6 +44,7 @@ bool Marina::isBoatAllowed(Boat* boat)
 	{
 		return true;
 	}
+
 	return false;
 }
 
@@ -61,7 +63,6 @@ void Marina::displayMooredBoats()
 	{
 		cout << "========== No boats moored ==========" << endl;
 	}
-	
 }
 
 void Marina::displayHoldingBay()
@@ -79,7 +80,6 @@ void Marina::displayHoldingBay()
 	{
 		cout << "========== Holding bay is empty ==========" << endl;
 	}
-	
 }
 
 void Marina::displayMarinaInformation()
