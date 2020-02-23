@@ -143,6 +143,22 @@ void Marina::calculateAndDisplayBookingCost(Boat* boat)
 	cout << "The calculated cost for this booking is: " << costToDisplay << endl;
 }
 
+void Marina::printBoatNotFound(string boatName)
+{
+	cout << "Boat "<< boatName <<" not found" << endl;
+}
+
+void Marina::printBoatIsNotAllowed(Boat* boat)
+{
+	cout << "Sorry, but boats with these sizes are not allowed" << endl;
+	boat->displayMeasures();
+}
+
+void Marina::printDeclinedOfferMessage()
+{
+	cout << "Sorry, we hope to see you again." << endl;
+}
+
 Marina::~Marina()
 {
 }

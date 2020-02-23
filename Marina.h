@@ -33,6 +33,12 @@ public:
 
 	void calculateAndDisplayBookingCost(Boat* boat);
 
+	void printBoatNotFound(string boatName);
+
+	void printBoatIsNotAllowed(Boat* boat);
+
+	void printDeclinedOfferMessage();
+
 	~Marina();
 };
 

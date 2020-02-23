@@ -45,10 +45,5 @@ public:
 	void displayBoatAndOwnerNames();
 
 	virtual void displayInfo();
-
-	// ++++++++++++++++++ STATIC METHODS +++++++++++++++++
-	static float askAndSetLength();
-
-	static float ansAndSetDepth();
 };
 

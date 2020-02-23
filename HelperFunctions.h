@@ -13,6 +13,14 @@ public:
 
 	static string getStringInput();
 
+	static bool checkIfStringIsInteger(string input);
+
+	static int convertStringToInteger(string input);
+
+	static bool checkIfStringIsFloat(string input);
+
+	static int convertStringToFloat(string input);
+
 	static void clearScreen();
 
 	static void printMenu();

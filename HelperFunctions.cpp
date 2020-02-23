@@ -1,6 +1,7 @@
 #include "HelperFunctions.h"
 #include <string>
 #include <sstream>
+#include <algorithm>
 
 
 HelperFunctions::HelperFunctions()
@@ -22,16 +23,66 @@ void HelperFunctions::ignoreCin()
 string HelperFunctions::getStringInput()
 {
 	string input;
-	ignoreCin();
 	getline(cin, input);
 	return input;
 }
 
+bool HelperFunctions::checkIfStringIsInteger(string input)
+{
+	bool valid = true;
+
+	for (int i = 0; i < input.length(); i++)
+	{
+		if (isdigit(input[i]) == false)
+		{
+			valid = false;
+			break;
+		}
+	}
+
+	return valid;
+}
+
+int HelperFunctions::convertStringToInteger(string input)
+{
+	//https://www.systutorials.com/convert-string-to-int-and-reverse/
+	int integer = stoi(input);
+	return integer;
+}
+
+bool HelperFunctions::checkIfStringIsFloat(string input)
+{
+	bool valid = true;
+
+	for (int i = 0; i < input.length(); i++)
+	{
+		if (isdigit(input[i]) == false && input[i] != '.')
+		{
+			valid = false;
+			break;
+		}
+	}
+
+	return valid;
+}
+
+int HelperFunctions::convertStringToFloat(string input)
+{
+	//https://www.systutorials.com/convert-string-to-int-and-reverse/
+	int number = stof(input);
+	return number;
+}
+
 void HelperFunctions::clearScreen()
 {
+	//http://www.cplusplus.com/articles/4z18T05o/#OSAgnosticWays
 	if (system("CLS"))
 	{
 		system("clear");
+	}
+	else
+	{
+		cout << string(100, '\n');
 	}
 }
 
@@ -88,5 +139,5 @@ void HelperFunctions::printSubMenu(int choice, int level)
 void HelperFunctions::printInvalidInputMessage()
 {
 	cout << "Invalid input. Please try again" << endl;
-	ignoreCin();
+	system("PAUSE");
 }

@@ -4,10 +4,43 @@
 
 Boat::Boat()
 {
-	cout << "Please enter the lenght of the boat:\n>";
-	cin >> length;
-	cout << "Please enter the depth of the boat:\n>";
-	cin >> depth;
+	bool invalidLength, invalidDepth;
+
+	do 
+	{
+		invalidLength = false;
+		cout << "Please enter the lenght of the boat:\n>";
+		string boatLength = HelperFunctions::getStringInput();
+
+		if (HelperFunctions::checkIfStringIsFloat(boatLength))
+		{
+			length = HelperFunctions::convertStringToFloat(boatLength);
+		}
+		else
+		{
+			HelperFunctions::printInvalidInputMessage();
+			invalidLength = true;
+		}
+
+	} while (invalidLength);
+
+	do
+	{
+		invalidDepth = false;
+		cout << "Please enter the depth of the boat:\n>";
+		string boatDepth = HelperFunctions::getStringInput();
+
+		if (HelperFunctions::checkIfStringIsFloat(boatDepth))
+		{
+			depth = HelperFunctions::convertStringToFloat(boatDepth);
+		}
+		else
+		{
+			HelperFunctions::printInvalidInputMessage();
+			invalidDepth = true;
+		}
+
+	} while (invalidDepth);
 }
 
 Boat::~Boat()
@@ -62,8 +95,24 @@ void Boat::setBookingDuration(int bookingDurationInput)
 
 void Boat::askAndSetBookingDuration()
 {
-	cout << "Please enter the duration of the booking:\n>";
-	cin >> bookingDuration;
+	bool invalidDuration;
+	do
+	{
+		invalidDuration = false;
+		cout << "Please enter the duration (in months) of the booking:\n>";
+		string bookingDuration = HelperFunctions::getStringInput();
+		
+		if (HelperFunctions::checkIfStringIsInteger(bookingDuration))
+		{
+			depth = HelperFunctions::convertStringToInteger(bookingDuration);
+		}
+		else
+		{
+			HelperFunctions::printInvalidInputMessage();
+			invalidDuration = true;
+		}
+
+	} while (invalidDuration);
 }
 
 void Boat::askAndSetOwnerName()
@@ -97,21 +146,4 @@ void Boat::displayInfo()
 	Boat::displayMeasures();
 	Boat::displayBoatAndOwnerNames();
 	cout << "\n";
-}
-
-// ++++++++++++++++++ STATIC METHODS +++++++++++++++++
-float Boat::askAndSetLength()
-{
-	float boatLength;
-	cout << "Please enter the lenght of the boat:\n>";
-	cin >> boatLength;
-	return boatLength;
-}
-
-float Boat::ansAndSetDepth()
-{
-	float boatDepth;
-	cout << "Please enter the depth of the boat:\n>";
-	cin >> boatDepth;
-	return boatDepth;
 }
