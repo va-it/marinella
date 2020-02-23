@@ -1,6 +1,7 @@
 #include "Boat.h"
 #include "HelperFunctions.h"
 #include <string>
+#include <iomanip>
 
 Boat::Boat()
 {
@@ -100,11 +101,11 @@ void Boat::askAndSetBookingDuration()
 	{
 		invalidDuration = false;
 		cout << "Please enter the duration (in months) of the booking:\n>";
-		string bookingDuration = HelperFunctions::getStringInput();
+		string bookingDurationInput = HelperFunctions::getStringInput();
 		
-		if (HelperFunctions::checkIfStringIsInteger(bookingDuration))
+		if (HelperFunctions::checkIfStringIsInteger(bookingDurationInput))
 		{
-			depth = HelperFunctions::convertStringToInteger(bookingDuration);
+			bookingDuration = HelperFunctions::convertStringToInteger(bookingDurationInput);
 		}
 		else
 		{
@@ -123,7 +124,7 @@ void Boat::askAndSetOwnerName()
 
 void Boat::displayMeasures()
 {
-	cout << "Boat lenght: " << length << " | " << "Boat depth: " <<  depth << endl;
+	cout << "Boat lenght: " << length << "m | " << "Boat depth: " << depth << "m" << endl;
 }
 
 void Boat::displayBoatName()

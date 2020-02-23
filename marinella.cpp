@@ -3,6 +3,7 @@
 #include <cstring>
 #include <list>
 #include <string>
+#include <iomanip>
 
 #include "HelperFunctions.h"
 #include "Boat.h"
@@ -19,6 +20,8 @@ int main(void)
 	Marina* marina = Marina::getInstance();
 	string menuChoice;
 	int menuChoiceInteger = 0;
+	//set decimal points http://www.cplusplus.com/reference/iomanip/setprecision/
+	cout << fixed << setprecision(2);
 
 	do
 	{
@@ -122,7 +125,7 @@ int main(void)
 											{
 												//user has declined the offer
 												marina->printDeclinedOfferMessage();
-												system("PAUSE");
+												HelperFunctions::pauseExecution();
 												continue;
 											}
 											break;
@@ -180,6 +183,7 @@ int main(void)
 					{
 						marina->printBoatNotFound(nameOfBoatToDelete);
 					}
+					HelperFunctions::pauseExecution();
 				}
 				break;
 
@@ -188,6 +192,7 @@ int main(void)
 				{
 					//Nicely display the space left, the moored boats and the holding bay
 					marina->displayMarinaInformation();
+					HelperFunctions::pauseExecution();
 				}
 				break;
 
@@ -213,6 +218,6 @@ int main(void)
 	}
 	while (menuChoiceInteger != 4);
 
-	system("PAUSE");
+	HelperFunctions::pauseExecution();
 	return 0;
 }

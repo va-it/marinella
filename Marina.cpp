@@ -1,9 +1,10 @@
 #include "Marina.h"
 #include <string>
+#include <iomanip>
 
 Marina::Marina()
 {
-	length = 150;
+	marinaLength = 150;
 	maxBoatLength = 15;
 	maxBoatDepth = 5;
 	costPerMeterPerMonth = 10;
@@ -21,7 +22,7 @@ Marina* Marina::getInstance()
 
 float Marina::getRemainingSpace()
 {
-	return length - Marina::getOccupiedSpace();
+	return marinaLength - Marina::getOccupiedSpace();
 }
 
 float Marina::getOccupiedSpace()
@@ -52,8 +53,8 @@ void Marina::displayMooredBoats()
 {
 	if (!mooredBoats.empty())
 	{
-		cout << "\n========== Moored boats";
-		cout << "(" << mooredBoats.size() << ") =====" << endl;
+		cout << "\n========== Moored boats ";
+		cout << "(" << mooredBoats.size() << ") ==========" << endl;
 		for (auto boat : mooredBoats)
 		{
 			boat->displayInfo();
@@ -69,7 +70,7 @@ void Marina::displayHoldingBay()
 {
 	if (!holdingBay.empty())
 	{
-		cout << "\n========== Boats in the holding bay";
+		cout << "\n========== Boats in the holding bay ";
 		cout << "(" << holdingBay.size() << ") ==========" << endl;
 		for (auto boat : holdingBay)
 		{
@@ -85,7 +86,7 @@ void Marina::displayHoldingBay()
 void Marina::displayMarinaInformation()
 {
 	cout << "\n%%%%%%%%%% MARINA INFORMATION %%%%%%%%%%" << endl;
-	cout << "\n\nSpace left: " << getRemainingSpace() << endl;
+	cout << "\n\nSpace left: " << getRemainingSpace() << "m" << endl;
 	displayMooredBoats();
 	displayHoldingBay();
 }
@@ -139,8 +140,12 @@ void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
 
 void Marina::calculateAndDisplayBookingCost(Boat* boat)
 {
-	float costToDisplay = (costPerMeterPerMonth * boat->getLength()) * (boat->getBookingDuration());
-	cout << "The calculated cost for this booking is: " << costToDisplay << endl;
+	float lengthOfBoat = boat->getLength();
+	float bookingDuration = boat->getBookingDuration();
+
+	float costPerLength = (costPerMeterPerMonth * lengthOfBoat);
+	float costPerLengthAndDuration = costPerLength * bookingDuration;
+	cout << "The calculated cost for this booking is: "<< costPerLengthAndDuration << endl;
 }
 
 void Marina::printBoatNotFound(string boatName)
@@ -156,7 +161,7 @@ void Marina::printBoatIsNotAllowed(Boat* boat)
 
 void Marina::printDeclinedOfferMessage()
 {
-	cout << "Sorry, we hope to see you again." << endl;
+	cout << "\nSorry, we hope to see you again." << endl;
 }
 
 Marina::~Marina()

@@ -19,7 +19,7 @@ public:
 
 	static bool checkIfStringIsFloat(string input);
 
-	static int convertStringToFloat(string input);
+	static float convertStringToFloat(string input);
 
 	static void clearScreen();
 
@@ -28,5 +28,7 @@ public:
 	static void printSubMenu(int choice, int level);
 
 	static void printInvalidInputMessage();
+
+	static void pauseExecution();
 };
 

@@ -5,7 +5,7 @@
 class Marina
 {
 private:
-	float length, maxBoatLength, maxBoatDepth, costPerMeterPerMonth;
+	float marinaLength, maxBoatLength, maxBoatDepth, costPerMeterPerMonth;
 	static Marina *instance;
 
 	Marina();
