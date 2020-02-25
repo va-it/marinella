@@ -44,6 +44,8 @@ public:
 
 	void displayBoatAndOwnerNames();
 
+	void displayBookingDuration();
+
 	virtual void displayInfo();
 };
 

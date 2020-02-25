@@ -142,9 +142,15 @@ void Boat::displayBoatAndOwnerNames()
 	cout << "Boat Name: " << boatName << " | " << "Owner Name: " << ownerName << endl;
 }
 
+void Boat::displayBookingDuration()
+{
+	cout << "Booking duration: " << bookingDuration << endl;
+}
+
 void Boat::displayInfo() 
 {
 	Boat::displayMeasures();
 	Boat::displayBoatAndOwnerNames();
+	Boat::displayBookingDuration();
 	cout << "\n";
 }

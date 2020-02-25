@@ -27,13 +27,13 @@ float Marina::getRemainingSpace()
 
 float Marina::getOccupiedSpace()
 {
+	std::list<Boat*>::iterator boat;
+
 	float totalLength = 0;
 
-	//https://stackoverflow.com/questions/16229729/printing-out-contents-of-a-list-from-the-c-list-library
-	// Bear in mind this is C++11 (https://www.fluentcpp.com/2018/10/26/how-to-access-the-index-of-the-current-element-in-a-modern-for-loop/)
-	for (auto b : mooredBoats)
+	for (boat = mooredBoats.begin(); boat != mooredBoats.end(); boat++)
 	{
-		totalLength += b->getLength();
+		totalLength += (*boat)->getLength();
 	}
 
 	return totalLength;
@@ -51,13 +51,16 @@ bool Marina::isBoatAllowed(Boat* boat)
 
 void Marina::displayMooredBoats()
 {
+	std::list<Boat*>::iterator boat;
+
 	if (!mooredBoats.empty())
 	{
 		cout << "\n========== Moored boats ";
 		cout << "(" << mooredBoats.size() << ") ==========" << endl;
-		for (auto boat : mooredBoats)
+		// Display all the boats that are being moved into the holding bay
+		for (boat = mooredBoats.begin(); boat != mooredBoats.end(); boat++)
 		{
-			boat->displayInfo();
+			(*boat)->displayInfo();
 		}
 	}
 	else
@@ -68,13 +71,15 @@ void Marina::displayMooredBoats()
 
 void Marina::displayHoldingBay()
 {
+	std::list<Boat*>::iterator boat;
+
 	if (!holdingBay.empty())
 	{
 		cout << "\n========== Boats in the holding bay ";
 		cout << "(" << holdingBay.size() << ") ==========" << endl;
-		for (auto boat : holdingBay)
+		for (boat = holdingBay.begin(); boat != holdingBay.end(); boat++)
 		{
-			boat->displayInfo();
+			(*boat)->displayInfo();
 		}
 	}
 	else
@@ -111,31 +116,58 @@ list<Boat*>::iterator Marina::searchMooredBoatByName(string boatName)
 
 void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
 {
+	list<Boat*>::reverse_iterator reverse_iterator;
+	list<Boat*>::iterator iterator;
+
 	string nameOfBoatToDelete = (*positionOfBoatToDelete)->getBoatName();
-	// To move boats between lists use splice
-	// http://www.cplusplus.com/reference/list/list/splice/
-	// This moves all the boats behind the one to delete (hence advance of 1)
-	// into the holding bay.
-	advance(positionOfBoatToDelete, 1);
-	holdingBay.splice(holdingBay.begin(), mooredBoats, positionOfBoatToDelete, mooredBoats.end());
-
-	cout << ">>>>> Moving boats into the holding bay... >>>>>" << endl;
-
-	displayMooredBoats();
-	displayHoldingBay();
-
-	// Highlight this section a bit more.
-	cout << "\nBoat " << nameOfBoatToDelete << " leaving the marina..." << endl;
-	mooredBoats.pop_back();
-
-	cout << "\n<<<<< Moving boats back into the marina... <<<<<" << endl;
-	mooredBoats.splice(mooredBoats.end(), holdingBay);
-
-	displayMooredBoats();
-	displayHoldingBay();
 
 	// free up memory
 	delete *positionOfBoatToDelete;
+
+	if (mooredBoats.size() == 1)
+	{
+		cout << "\n##### Boat " << nameOfBoatToDelete << " leaving the marina #####" << endl;
+
+		// simply empty the list
+		mooredBoats.clear();
+	}
+	else
+	{
+		cout << ">>>>> Moving boats into the holding bay... >>>>>" << endl;
+
+		// To move boats between lists use splice
+		// http://www.cplusplus.com/reference/list/list/splice/
+		// This moves all the boats behind the one to delete (hence advance of 1)
+		// into the holding bay.
+		advance(positionOfBoatToDelete, 1);
+
+		// Display all the boats that are being moved into the holding bay
+		// https://thispointer.com/c-different-ways-to-iterate-over-a-list-of-objects/
+		// convert reverse iterator to forward https://stackoverflow.com/questions/2037867/can-i-convert-a-reverse-iterator-to-a-forward-iterator
+		for (reverse_iterator = mooredBoats.rbegin(); reverse_iterator.base() != positionOfBoatToDelete; reverse_iterator++)
+		{
+			cout << (*reverse_iterator)->getBoatName() << " ===> Holding bay" << endl;
+		}
+
+		//Moving boats from marina to holding bay
+		holdingBay.splice(holdingBay.begin(), mooredBoats, positionOfBoatToDelete, mooredBoats.end());
+
+
+		cout << "\n##### Boat " << nameOfBoatToDelete << " leaving the marina #####" << endl;
+
+		// Remove last boat from marina (the one we want to get out)
+		mooredBoats.pop_back();
+
+		cout << "\n<<<<< Moving boats back into the marina... <<<<<" << endl;
+
+		// Display all the boats that are being moved into the holding bay
+		for (iterator = holdingBay.begin(); iterator != holdingBay.end(); iterator++)
+		{
+			cout << "Marina <=== "<< (*iterator)->getBoatName() << endl;
+		}
+
+		mooredBoats.splice(mooredBoats.end(), holdingBay);
+	}	
 }
 
 void Marina::calculateAndDisplayBookingCost(Boat* boat)

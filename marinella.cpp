@@ -26,6 +26,7 @@ int main(void)
 	do
 	{
 		HelperFunctions::clearScreen();
+
 		// =================== MENU ======================
 		HelperFunctions::printMenu();
 		// ===============================================
@@ -183,6 +184,7 @@ int main(void)
 					{
 						marina->printBoatNotFound(nameOfBoatToDelete);
 					}
+					
 					HelperFunctions::pauseExecution();
 				}
 				break;

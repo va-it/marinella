@@ -29,7 +29,7 @@ public:
 
 	list<Boat*>::iterator searchMooredBoatByName(string boatName);
 
-	void removeBoatFromMarina(list<Boat*>::iterator);
+	void removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete);
 
 	void calculateAndDisplayBookingCost(Boat* boat);
 

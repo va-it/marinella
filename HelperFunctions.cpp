@@ -30,12 +30,19 @@ bool HelperFunctions::checkIfStringIsInteger(string input)
 {
 	bool valid = true;
 
-	for (int i = 0; i < input.length(); i++)
+	if (input.length() == 0)
 	{
-		if (isdigit(input[i]) == false)
+		valid = false;
+	}
+	else
+	{
+		for (int i = 0; i < input.length(); i++)
 		{
-			valid = false;
-			break;
+			if (isdigit(input[i]) == false)
+			{
+				valid = false;
+				break;
+			}
 		}
 	}
 
@@ -53,12 +60,19 @@ bool HelperFunctions::checkIfStringIsFloat(string input)
 {
 	bool valid = true;
 
-	for (int i = 0; i < input.length(); i++)
+	if (input.length() == 0)
 	{
-		if (isdigit(input[i]) == false && input[i] != '.')
+		valid = false;
+	}
+	else
+	{
+		for (int i = 0; i < input.length(); i++)
 		{
-			valid = false;
-			break;
+			if (isdigit(input[i]) == false && input[i] != '.')
+			{
+				valid = false;
+				break;
+			}
 		}
 	}
 
@@ -104,7 +118,7 @@ void HelperFunctions::printSubMenu(int choice, int level)
 				}
 				case 2:
 				{
-					cout << "Enter the name of the boat to delete:\n>" << endl;
+					cout << "Enter the name of the boat to delete:\n>";
 					break;
 				}
 			}
