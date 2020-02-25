@@ -225,8 +225,10 @@ void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
 			displayHoldingBayGraphical(true);
 		}
 
-		cout << "\n\n##### Boat " << nameOfBoatToDelete << " leaving the marina #####" << endl;
+		cout << "\n##### Boat " << nameOfBoatToDelete << " leaving the marina #####" << endl;
 
+		// Free up memory. pop_back wouldn't call the destructor since the object has been created dynamically
+		delete mooredBoats.back();
 		// Remove last boat from marina (the one we want to get out)
 		mooredBoats.pop_back();
 
@@ -247,9 +249,6 @@ void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
 		cout << "\n";
 		displayMooredBoatsGraphical(true);
 		displayHoldingBayGraphical(true);
-
-		// Delete boat at positionOfBoatToDelete with <> delete *positionOfBoaToDelete </>
-		// Exception thrown, cannot dereference value-initialized list iterator 
 	}	
 }
 
