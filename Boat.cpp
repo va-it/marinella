@@ -10,7 +10,7 @@ Boat::Boat()
 	do 
 	{
 		invalidLength = false;
-		cout << "Please enter the lenght of the boat:\n>";
+		cout << "\nPlease enter the lenght of the boat:\n> ";
 		string boatLength = HelperFunctions::getStringInput();
 
 		if (HelperFunctions::checkIfStringIsFloat(boatLength))
@@ -28,7 +28,7 @@ Boat::Boat()
 	do
 	{
 		invalidDepth = false;
-		cout << "Please enter the depth of the boat:\n>";
+		cout << "\nPlease enter the depth of the boat:\n> ";
 		string boatDepth = HelperFunctions::getStringInput();
 
 		if (HelperFunctions::checkIfStringIsFloat(boatDepth))
@@ -70,7 +70,7 @@ void Boat::setBoatName(string boatNameInput)
 
 void Boat::askAndSetBoatName()
 {
-	cout << "Please enter the name of the boat:\n>";
+	cout << "\nPlease enter the name of the boat:\n> ";
 	setBoatName(HelperFunctions::getStringInput());
 }
 
@@ -100,7 +100,7 @@ void Boat::askAndSetBookingDuration()
 	do
 	{
 		invalidDuration = false;
-		cout << "Please enter the duration (in months) of the booking:\n>";
+		cout << "\nPlease enter the duration (in whole months) of the booking:\n> ";
 		string bookingDurationInput = HelperFunctions::getStringInput();
 		
 		if (HelperFunctions::checkIfStringIsInteger(bookingDurationInput))
@@ -118,7 +118,7 @@ void Boat::askAndSetBookingDuration()
 
 void Boat::askAndSetOwnerName()
 {
-	cout << "Please enter the name of the boat's owner:\n>";
+	cout << "\nPlease enter the name of the boat's owner:\n> ";
 	setOwnerName(HelperFunctions::getStringInput());
 }
 
@@ -144,7 +144,7 @@ void Boat::displayBoatAndOwnerNames()
 
 void Boat::displayBookingDuration()
 {
-	cout << "Booking duration: " << bookingDuration << endl;
+	cout << "Booking duration: " << bookingDuration << " months" << endl;
 }
 
 void Boat::displayInfo() 

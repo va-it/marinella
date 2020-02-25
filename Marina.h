@@ -17,13 +17,19 @@ public:
 
 	float getRemainingSpace();
 
+	void printRemainingSpace();
+
 	float getOccupiedSpace();
 
 	bool isBoatAllowed(Boat* boat);
 
 	void displayMooredBoats();
 
+	void displayMooredBoatsGraphical(bool showHeading = false);
+
 	void displayHoldingBay();
+
+	void displayHoldingBayGraphical(bool showHeading = false);
 
 	void displayMarinaInformation();
 
@@ -38,6 +44,8 @@ public:
 	void printBoatIsNotAllowed(Boat* boat);
 
 	void printDeclinedOfferMessage();
+
+	void printMaxBoatSizes();
 
 	~Marina();
 };

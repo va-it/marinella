@@ -3,7 +3,6 @@
 
 NarrowBoat::NarrowBoat()
 {
-	cout << "Narrow boat created" << endl;
 }
 
 NarrowBoat::~NarrowBoat()

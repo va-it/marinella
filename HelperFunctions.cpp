@@ -97,7 +97,7 @@ void HelperFunctions::printMenu()
 	cout << "\nPlease select an option from the menu below..." << endl;
 	cout << "------------------------------------------------------------------------" << endl;
 	cout << "|  1. New booking  |  2. Delete record  |  3. Show marina  |  4. Exit  |" << endl;
-	cout << "------------------------------------------------------------------------\n>";
+	cout << "------------------------------------------------------------------------\n> ";
 }
 
 void HelperFunctions::printSubMenu(int choice, int level)
@@ -110,15 +110,17 @@ void HelperFunctions::printSubMenu(int choice, int level)
 			{
 				case 1:
 				{
-					cout << "Please select type of boat:" << endl;
+					cout << "\n%%%%%%%%%% NEW BOOKING %%%%%%%%%%" << endl;
+					cout << "\nPlease select type of boat:" << endl;
 					cout << "1. Motorboat" << endl;
 					cout << "2. Narrowboat" << endl;
-					cout << "3. Sailingboat\n>";
+					cout << "3. Sailingboat\n> ";
 					break;
 				}
 				case 2:
 				{
-					cout << "Enter the name of the boat to delete:\n>";
+					cout << "\n%%%%%%%%%% DELETE RECORD %%%%%%%%%%" << endl;
+					cout << "\nEnter the name of the boat to delete:\n> ";
 					break;
 				}
 			}
@@ -130,9 +132,9 @@ void HelperFunctions::printSubMenu(int choice, int level)
 			{
 				case 1:
 				{
-					cout << "Do you confirm?" << endl;
+					cout << "\nDo you accept the offer?" << endl;
 					cout << "1. Yes" << endl;
-					cout << "2. No\n>";
+					cout << "2. No\n> ";
 					break;
 				}
 			}
@@ -154,7 +156,7 @@ void HelperFunctions::pauseExecution()
 {
 	do 
 	{
-		cout << "\n### Press Enter to continue ###\n";
+		cout << "\n### Press Enter to continue ###";
 	} 
 	while (cin.get() != '\n');
 }

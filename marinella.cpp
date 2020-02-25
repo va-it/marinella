@@ -35,6 +35,8 @@ int main(void)
 
 		if (HelperFunctions::checkIfStringIsInteger(menuChoice))
 		{
+			HelperFunctions::clearScreen();
+
 			menuChoiceInteger = HelperFunctions::convertStringToInteger(menuChoice);
 
 			switch (menuChoiceInteger)
@@ -42,7 +44,6 @@ int main(void)
 				// New booking
 				case 1:
 				{
-					string boatType;
 					Boat* incomingBoat;
 					bool invalidInput;
 
@@ -53,7 +54,7 @@ int main(void)
 						// =================== MENU ======================
 						HelperFunctions::printSubMenu(menuChoiceInteger, 1);
 						// ===============================================
-						boatType = HelperFunctions::getStringInput();
+						string boatType = HelperFunctions::getStringInput();
 
 						if (HelperFunctions::checkIfStringIsInteger(boatType))
 						{
@@ -150,6 +151,7 @@ int main(void)
 							else
 							{
 								marina->printBoatIsNotAllowed(incomingBoat);
+								HelperFunctions::pauseExecution();
 							}
 						}
 						else
@@ -175,7 +177,7 @@ int main(void)
 					list<Boat*>::iterator positionOfBoatToDelete;
 					positionOfBoatToDelete = marina->searchMooredBoatByName(nameOfBoatToDelete);
 
-					// searchMooredBoatByName returns iterator to last if a boat is not found 
+					// searchMooredBoatByName returns iterator to end if a boat is not found 
 					if (positionOfBoatToDelete != marina->mooredBoats.end())
 					{
 						marina->removeBoatFromMarina(positionOfBoatToDelete);
@@ -192,7 +194,7 @@ int main(void)
 				// Show marina
 				case 3:
 				{
-					//Nicely display the space left, the moored boats and the holding bay
+					// Nicely display the space left and the moored boats
 					marina->displayMarinaInformation();
 					HelperFunctions::pauseExecution();
 				}
@@ -202,6 +204,7 @@ int main(void)
 				case 4:
 				{
 					// Goodbye message
+					// Save Marina status to file
 				}
 				break;
 				default:
