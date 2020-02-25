@@ -184,8 +184,12 @@ void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
 	{
 		cout << "\n##### Boat " << nameOfBoatToDelete << " leaving the marina #####" << endl;
 
+		// Free up memory. clear wouldn't call the destructor since the object has been created dynamically
+		delete mooredBoats.back();
 		// simply empty the list
 		mooredBoats.clear();
+		// Show that the marina is empty
+		displayMooredBoats();
 	}
 	else
 	{
