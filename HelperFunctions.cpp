@@ -170,9 +170,8 @@ void HelperFunctions::loadMarinaStatus(Marina* &marina)
 		int numberOfBoats = 0;
 		loadedFile.read((char*)&numberOfBoats, sizeof(int));
 
-		// Cannot use dynamic size for array
-		// https://stackoverflow.com/questions/9219712/c-array-expression-must-have-a-constant-value
-		Boat** loadedBoats = new Boat*[numberOfBoats];
+		// initialize a vector to hold new Boat objects inside for loop below
+		vector<Boat*> loadedBoats(numberOfBoats);
 
 		for (int j = 0; j < numberOfBoats; j++)
 		{
@@ -180,6 +179,9 @@ void HelperFunctions::loadMarinaStatus(Marina* &marina)
 			loadedFile.read((char*)loadedBoats[j], sizeof(Boat));
 			marina->mooredBoats.push_back(loadedBoats[j]);
 		}
+
+		// free memory used to store Boat objects
+		loadedBoats.clear();
 	}
 	else
 	{

@@ -232,8 +232,9 @@ void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
 
 		cout << "\n##### Boat " << nameOfBoatToDelete << " leaving the marina #####" << endl;
 
-		// Free up memory. pop_back wouldn't call the destructor since the object has been created dynamically
-		delete mooredBoats.back();
+		// pop_back doesn't call the destructor since the object has been created dynamically
+		// this (delete mooredBoats.back();) should work, but it causes error in certain situations.
+
 		// Remove last boat from marina (the one we want to get out)
 		mooredBoats.pop_back();
 
@@ -250,7 +251,7 @@ void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
 			mooredBoats.splice(mooredBoats.end(), holdingBay);
 		}
 
-		// Show how all the boats are once again in the marina
+		// Show that all the boats are once again in the marina
 		cout << "\n";
 		displayMooredBoatsGraphical(true);
 		displayHoldingBayGraphical(true);
