@@ -1,7 +1,7 @@
 #include "NarrowBoat.h"
 
 
-NarrowBoat::NarrowBoat()
+NarrowBoat::NarrowBoat() : Boat(true)
 {
 }
 

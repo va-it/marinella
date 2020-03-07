@@ -1,10 +1,21 @@
 #pragma once
 #include <iostream>
+#include <fstream>
+#include <list>
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include "Marina.h"
+#include "Boat.h"
 using namespace std;
 
 class HelperFunctions
 {
 private:
+
+	/*static string statusFilePath = "status.bin";
+	static ofstream statusFile;*/
+
 	HelperFunctions();
 	~HelperFunctions();
 public:
@@ -30,5 +41,11 @@ public:
 	static void printInvalidInputMessage();
 
 	static void pauseExecution();
+
+	// Input/output with files
+
+	static void loadMarinaStatus(Marina* &marina);
+
+	static void saveMarinaStatus(Marina* marina);
 };
 

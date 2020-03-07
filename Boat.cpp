@@ -5,6 +5,10 @@
 
 Boat::Boat()
 {
+}
+
+Boat::Boat(bool create)
+{
 	bool invalidLength, invalidDepth;
 
 	do 

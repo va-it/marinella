@@ -23,6 +23,8 @@ int main(void)
 	//set decimal points http://www.cplusplus.com/reference/iomanip/setprecision/
 	cout << fixed << setprecision(2);
 
+	HelperFunctions::loadMarinaStatus(marina);
+
 	do
 	{
 		HelperFunctions::clearScreen();
@@ -223,6 +225,8 @@ int main(void)
 	}
 	while (menuChoiceInteger != 4);
 
+	HelperFunctions::saveMarinaStatus(marina);
+	
 	HelperFunctions::pauseExecution();
 	return 0;
 }

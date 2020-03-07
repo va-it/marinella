@@ -8,6 +8,7 @@ Marina::Marina()
 	maxBoatLength = 15;
 	maxBoatDepth = 5;
 	costPerMeterPerMonth = 10;
+	nameOfStatusFile = "status.bin";
 }
 
 Marina* Marina::getInstance()

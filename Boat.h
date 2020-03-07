@@ -12,6 +12,8 @@ private:
 public:
 	Boat();
 
+	Boat(bool create);
+
 	~Boat();
 
 	float getLength();

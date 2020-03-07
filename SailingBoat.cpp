@@ -2,7 +2,7 @@
 
 
 
-SailingBoat::SailingBoat()
+SailingBoat::SailingBoat() : Boat(true)
 {
 }
 

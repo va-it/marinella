@@ -2,7 +2,7 @@
 
 
 
-MotorBoat::MotorBoat() : Boat()
+MotorBoat::MotorBoat() : Boat(true)
 {
 }
 

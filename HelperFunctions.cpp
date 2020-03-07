@@ -1,7 +1,4 @@
 #include "HelperFunctions.h"
-#include <string>
-#include <sstream>
-#include <algorithm>
 
 
 HelperFunctions::HelperFunctions()
@@ -159,4 +156,62 @@ void HelperFunctions::pauseExecution()
 		cout << "\n### Press Enter to continue ###";
 	} 
 	while (cin.get() != '\n');
+}
+
+
+// Pass by reference so that the marina object gets changed
+void HelperFunctions::loadMarinaStatus(Marina* &marina)
+{
+	// read status from file
+	ifstream loadedFile(marina->nameOfStatusFile, ios::binary | ios::in);
+
+	if (loadedFile.is_open())
+	{
+		int numberOfBoats = 0;
+		loadedFile.read((char*)&numberOfBoats, sizeof(int));
+
+		// Cannot use dynamic size for array
+		// https://stackoverflow.com/questions/9219712/c-array-expression-must-have-a-constant-value
+		Boat** loadedBoats = new Boat*[numberOfBoats];
+
+		for (int j = 0; j < numberOfBoats; j++)
+		{
+			loadedBoats[j] = new Boat();
+			loadedFile.read((char*)loadedBoats[j], sizeof(Boat));
+			marina->mooredBoats.push_back(loadedBoats[j]);
+		}
+	}
+	else
+	{
+		cout << "Error loading file";
+	}
+
+	loadedFile.close();
+}
+
+void HelperFunctions::saveMarinaStatus(Marina* marina) 
+{
+	ofstream fileToSave;
+	// save current state to file
+	fileToSave.open(marina->nameOfStatusFile, ios::out | ios::binary);
+	if (!fileToSave) {
+		cout << "Error in creating file...\n";
+	}
+
+	// get the number of boats and write that to the beginning of the file
+	// used to loop X many times when loading the file
+	int numberOfBoats = marina->mooredBoats.size();
+	fileToSave.write((char*)&numberOfBoats, sizeof(int));
+
+	list<Boat*>::const_iterator boatPosition;
+	// loop over every boat in the marina and save to file
+	for (boatPosition = marina->mooredBoats.cbegin(); boatPosition != marina->mooredBoats.cend(); boatPosition++)
+	{
+		fileToSave.write((char*)(*boatPosition), sizeof(Boat));
+	}
+
+	fileToSave.close();
+
+	cout << "Date saved into file the file.\n";
+
 }

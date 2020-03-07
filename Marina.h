@@ -13,6 +13,8 @@ private:
 public:
 	list<Boat*> mooredBoats, holdingBay;
 
+	string nameOfStatusFile;
+
 	static Marina* getInstance();
 
 	float getRemainingSpace();
