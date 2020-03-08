@@ -1,22 +1,22 @@
 #include "MotorBoat.h"
 
-
-
-MotorBoat::MotorBoat()
+MotorBoat::MotorBoat() : Boat(true)
 {
-	float boatLenght, boatDepth;
-	boatLenght = Boat::readLenght();
-	boatDepth = Boat::readDepth();
-
-	MotorBoat(boatLenght, boatDepth);
 }
-
-MotorBoat::MotorBoat(float lenght, float depth) : Boat(lenght, depth)
-{
-	cout << "Motor Boat created";
-}
-
 
 MotorBoat::~MotorBoat()
 {
+}
+
+void MotorBoat::displayInfo()
+{
+	//Based on drawings from https://asciiart.website/index.php?art=transportation/nautical
+	cout << "\n********** Motor boat **********" << endl;
+	cout << "                 __ /__" << endl;
+	cout << "          _____ /______|" << endl;
+	cout << " _______ / _____\\_______\\_____" << endl;
+	cout << " \\              < < <         |" << endl;
+	cout << " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+
+	Boat::displayInfo();
 }

@@ -1,31 +1,56 @@
 #pragma once
 #include <iostream>
+#include <string>
+#include <iomanip>
+
 using namespace std;
 
 class Boat
 {
 private:
-	
-	float lenght, depth;
+	string boatName, ownerName;
+	float length, depth;
+	int bookingDuration;
 
 public:
 	Boat();
-	
-	Boat(float childLenght, float childDepth);
+
+	Boat(bool askDetails);
 
 	~Boat();
 
-	float getLenght();
-	
+	float getLength();
+
 	float getDepth();
 
-	void getMeasures();
+	string getBoatName();
 
-	void getDetails();
+	void setBoatName(string boatNameInput);
 
-	// ++++++++++++++++++ STATIC METHODS +++++++++++++++++
-	static float readLenght();
+	string getOwnerName();
 
-	static float readDepth();
+	void setOwnerName(string ownerNameInput);
+
+	int getBookingDuration();
+
+	void setBookingDuration(int bookingDurationInput);
+
+	void askAndSetBookingDuration();
+
+	void askAndSetBoatName();
+
+	void askAndSetOwnerName();
+
+	void displayMeasures();
+
+	void displayBoatName();
+
+	void displayOwnerName();
+
+	void displayBoatAndOwnerNames();
+
+	void displayBookingDuration();
+
+	virtual void displayInfo();
 };
 

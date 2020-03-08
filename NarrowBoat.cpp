@@ -1,20 +1,21 @@
 #include "NarrowBoat.h"
 
-
-NarrowBoat::NarrowBoat()
+NarrowBoat::NarrowBoat() : Boat(true)
 {
-	float boatLenght, boatDepth;
-	boatLenght = Boat::readLenght();
-	boatDepth = Boat::readDepth();
-
-	NarrowBoat(boatLenght, boatDepth);
-}
-
-NarrowBoat::NarrowBoat(float lenght, float depth) :Boat(lenght, depth)
-{
-	cout << "Motor Boat created";
 }
 
 NarrowBoat::~NarrowBoat()
 {
+}
+
+void NarrowBoat::displayInfo()
+{
+	//Based on drawings from https://asciiart.website/index.php?art=transportation/nautical
+	cout << "\n********** Narrow boat **********" << endl;
+	cout << "        _________________" << endl;
+	cout << " ______/  /___/  /___/  \\________" << endl;
+	cout << " \\ = : : : :  : : : : : : : : : /" << endl;
+	cout << " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+
+	Boat::displayInfo();
 }

@@ -1,20 +1,54 @@
 #pragma once
+#include <list>
 #include "Boat.h"
 
 class Marina
 {
-
-	// CONSIDER MAKING THIS IS SINGLETON
-
 private:
-	float lenght;
+	float marinaLength, maxBoatLength, maxBoatDepth, costPerMeterPerMonth;
+	static Marina *instance;
+
+	Marina();
 
 public:
-	Marina();
-	~Marina();
+	list<Boat*> mooredBoats, holdingBay;
 
-	float getRemainingSpace()
-	{
-	}
+	string nameOfStatusFile;
+
+	static Marina* getInstance();
+
+	float getRemainingSpace();
+
+	void printRemainingSpace();
+
+	float getOccupiedSpace();
+
+	bool isBoatAllowed(Boat* boat);
+
+	void displayMooredBoats();
+
+	void displayMooredBoatsGraphical(bool showHeading = false);
+
+	void displayHoldingBay();
+
+	void displayHoldingBayGraphical(bool showHeading = false);
+
+	void displayMarinaInformation();
+
+	list<Boat*>::iterator searchMooredBoatByName(string boatName);
+
+	void removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete);
+
+	void calculateAndDisplayBookingCost(Boat* boat);
+
+	void printBoatNotFound(string boatName);
+
+	void printBoatIsNotAllowed(Boat* boat);
+
+	void printDeclinedOfferMessage();
+
+	void printMaxBoatSizes();
+
+	~Marina();
 };
 

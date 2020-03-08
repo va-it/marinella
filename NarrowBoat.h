@@ -1,7 +1,7 @@
 #pragma once
 #include "Boat.h"
-
 #include <iostream>
+
 using namespace std;
 
 class NarrowBoat :
@@ -10,7 +10,7 @@ class NarrowBoat :
 public:
 	NarrowBoat();
 
-	NarrowBoat(float lenght, float depth);
-
 	~NarrowBoat();
+
+	void displayInfo();
 };
