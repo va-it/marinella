@@ -17,6 +17,10 @@ public:
 
 	static Marina* getInstance();
 
+	float getMaxBoatLength();
+	
+	float getMaxBoatDepth();
+
 	float getRemainingSpace();
 
 	void printRemainingSpace();

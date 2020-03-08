@@ -8,11 +8,12 @@ Boat::Boat()
 Boat::Boat(bool askDetails)
 {
 	bool invalidLength, invalidDepth;
+	Marina* marina = Marina::getInstance();
 
 	do
 	{
 		invalidLength = false;
-		cout << "\nPlease enter the lenght of the boat:\n> ";
+		cout << "\nPlease enter the lenght of the boat (max " << marina->getMaxBoatLength() << "):\n> ";
 		string boatLength = HelperFunctions::getStringInput();
 
 		if (HelperFunctions::checkIfStringIsFloat(boatLength))
@@ -30,7 +31,7 @@ Boat::Boat(bool askDetails)
 	do
 	{
 		invalidDepth = false;
-		cout << "\nPlease enter the depth of the boat:\n> ";
+		cout << "\nPlease enter the depth of the boat (max " << marina->getMaxBoatDepth() << "):\n> ";
 		string boatDepth = HelperFunctions::getStringInput();
 
 		if (HelperFunctions::checkIfStringIsFloat(boatDepth))

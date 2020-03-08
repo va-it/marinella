@@ -21,6 +21,16 @@ Marina* Marina::getInstance()
 	return instance;
 }
 
+float Marina::getMaxBoatLength()
+{
+	return maxBoatLength;
+}
+
+float Marina::getMaxBoatDepth()
+{
+	return maxBoatDepth;
+}
+
 float Marina::getRemainingSpace()
 {
 	return marinaLength - Marina::getOccupiedSpace();
