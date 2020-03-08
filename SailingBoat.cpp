@@ -1,7 +1,5 @@
 #include "SailingBoat.h"
 
-
-
 SailingBoat::SailingBoat() : Boat(true)
 {
 }

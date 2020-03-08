@@ -1,7 +1,7 @@
 #pragma once
 #include "Boat.h"
-
 #include <iostream>
+
 using namespace std;
 
 class SailingBoat :

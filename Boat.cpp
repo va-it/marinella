@@ -7,7 +7,7 @@ Boat::Boat()
 {
 }
 
-Boat::Boat(bool create)
+Boat::Boat(bool askDetails)
 {
 	bool invalidLength, invalidDepth;
 

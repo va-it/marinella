@@ -1,7 +1,5 @@
 #include "MotorBoat.h"
 
-
-
 MotorBoat::MotorBoat() : Boat(true)
 {
 }
