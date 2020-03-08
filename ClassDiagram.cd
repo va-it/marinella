@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Boat">
+    <Position X="4.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>IABAIAAACAAEAAJQIlECAAAAAIQAAAIAACAAIAygAAI=</HashCode>
+      <FileName>Boat.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HelperFunctions">
+    <Position X="7.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EAAQAAAAABAAAgAACAAAgAAASBAAAIBAgAAgCAAABAQ=</HashCode>
+      <FileName>HelperFunctions.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Marina">
+    <Position X="0.75" Y="0.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAgIAAAAAYAKAQAIAIAqACQAAABQAAUAACUECAAgQAo=</HashCode>
+      <FileName>Marina.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MotorBoat">
+    <Position X="3.75" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAACAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MotorBoat.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NarrowBoat">
+    <Position X="5.75" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAABAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NarrowBoat.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SailingBoat">
+    <Position X="7.75" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>SailingBoat.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
