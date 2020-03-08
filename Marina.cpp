@@ -67,7 +67,7 @@ void Marina::displayMooredBoats()
 	if (!mooredBoats.empty())
 	{
 		cout << "\n========== Moored boats (" << mooredBoats.size() << ") ==========" << endl;
-		
+
 		displayMooredBoatsGraphical();
 
 		for (boatPosition = mooredBoats.begin(); boatPosition != mooredBoats.end(); boatPosition++)
@@ -134,7 +134,7 @@ void Marina::displayHoldingBayGraphical(bool showHeading)
 		{
 			cout << "\n========== Holding bay (" << holdingBay.size() << ") ==========" << endl;
 		}
-		
+
 		cout << "--------------------------------------" << endl;
 
 		for (boatPosition = holdingBay.cbegin(); boatPosition != holdingBay.cend(); boatPosition++)
@@ -254,7 +254,7 @@ void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
 		cout << "\n";
 		displayMooredBoatsGraphical(true);
 		displayHoldingBayGraphical(true);
-	}	
+	}
 }
 
 void Marina::calculateAndDisplayBookingCost(Boat* boat)
@@ -265,13 +265,13 @@ void Marina::calculateAndDisplayBookingCost(Boat* boat)
 	float costPerLength = (costPerMeterPerMonth * lengthOfBoat);
 	float costPerLengthAndDuration = costPerLength * bookingDuration;
 	cout << "\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
-	cout << "The calculated cost for this booking is: "<< costPerLengthAndDuration << endl;
+	cout << "The calculated cost for this booking is: " << costPerLengthAndDuration << endl;
 	cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
 }
 
 void Marina::printBoatNotFound(string boatName)
 {
-	cout << "\nBoat \""<< boatName <<"\" not found" << endl;
+	cout << "\nBoat \"" << boatName << "\" not found" << endl;
 }
 
 void Marina::printBoatIsNotAllowed(Boat* boat)

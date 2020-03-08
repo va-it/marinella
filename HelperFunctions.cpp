@@ -1,6 +1,5 @@
 #include "HelperFunctions.h"
 
-
 HelperFunctions::HelperFunctions()
 {
 }
@@ -101,42 +100,42 @@ void HelperFunctions::printSubMenu(int choice, int level)
 {
 	switch (level)
 	{
+	case 1:
+	{
+		switch (choice)
+		{
 		case 1:
 		{
-			switch (choice)
-			{
-				case 1:
-				{
-					cout << "\n%%%%%%%%%% NEW BOOKING %%%%%%%%%%" << endl;
-					cout << "\nPlease select type of boat:" << endl;
-					cout << "1. Motorboat" << endl;
-					cout << "2. Narrowboat" << endl;
-					cout << "3. Sailingboat\n> ";
-					break;
-				}
-				case 2:
-				{
-					cout << "\n%%%%%%%%%% DELETE RECORD %%%%%%%%%%" << endl;
-					cout << "\nEnter the name of the boat to delete:\n> ";
-					break;
-				}
-			}
+			cout << "\n%%%%%%%%%% NEW BOOKING %%%%%%%%%%" << endl;
+			cout << "\nPlease select type of boat:" << endl;
+			cout << "1. Motorboat" << endl;
+			cout << "2. Narrowboat" << endl;
+			cout << "3. Sailingboat\n> ";
+			break;
 		}
-		break;
-		case 2: // sub sub menu
+		case 2:
 		{
-			switch (choice)
-			{
-				case 1:
-				{
-					cout << "\nDo you accept the offer?" << endl;
-					cout << "1. Yes" << endl;
-					cout << "2. No\n> ";
-					break;
-				}
-			}
+			cout << "\n%%%%%%%%%% DELETE RECORD %%%%%%%%%%" << endl;
+			cout << "\nEnter the name of the boat to delete:\n> ";
+			break;
 		}
-		break;
+		}
+	}
+	break;
+	case 2: // sub sub menu
+	{
+		switch (choice)
+		{
+		case 1:
+		{
+			cout << "\nDo you accept the offer?" << endl;
+			cout << "1. Yes" << endl;
+			cout << "2. No\n> ";
+			break;
+		}
+		}
+	}
+	break;
 	}
 }
 
@@ -176,11 +175,10 @@ void HelperFunctions::printGoodbyeMessage()
 
 void HelperFunctions::pauseExecution()
 {
-	do 
+	do
 	{
 		cout << "\n### Press Enter to continue ###";
-	} 
-	while (cin.get() != '\n');
+	} while (cin.get() != '\n');
 }
 
 
@@ -216,7 +214,7 @@ void HelperFunctions::loadMarinaStatus(Marina* &marina)
 	loadedFile.close();
 }
 
-void HelperFunctions::saveMarinaStatus(Marina* marina) 
+void HelperFunctions::saveMarinaStatus(Marina* marina)
 {
 	ofstream fileToSave;
 	// save current state to file
@@ -240,5 +238,4 @@ void HelperFunctions::saveMarinaStatus(Marina* marina)
 	fileToSave.close();
 
 	cout << "Data saved into status file" << endl;
-
 }

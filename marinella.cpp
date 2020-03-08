@@ -20,6 +20,7 @@ int main(void)
 	Marina* marina = Marina::getInstance();
 	string menuChoice;
 	int menuChoiceInteger = 0;
+
 	//set decimal points http://www.cplusplus.com/reference/iomanip/setprecision/
 	cout << fixed << setprecision(2);
 
@@ -44,179 +45,180 @@ int main(void)
 			switch (menuChoiceInteger)
 			{
 				// New booking
-				case 1:
+			case 1:
+			{
+				Boat* incomingBoat;
+				bool invalidInput;
+
+				do
 				{
-					Boat* incomingBoat;
-					bool invalidInput;
+					invalidInput = false;
 
-					do
+					// =================== MENU ======================
+					HelperFunctions::printSubMenu(menuChoiceInteger, 1);
+					// ===============================================
+
+					string boatType = HelperFunctions::getStringInput();
+
+					if (HelperFunctions::checkIfStringIsInteger(boatType))
 					{
-						invalidInput = false;
-
-						// =================== MENU ======================
-						HelperFunctions::printSubMenu(menuChoiceInteger, 1);
-						// ===============================================
-						string boatType = HelperFunctions::getStringInput();
-
-						if (HelperFunctions::checkIfStringIsInteger(boatType))
+						int boatTypeInteger = HelperFunctions::convertStringToInteger(boatType);
+						switch (boatTypeInteger)
 						{
-							int boatTypeInteger = HelperFunctions::convertStringToInteger(boatType);
-							switch (boatTypeInteger)
+						case 1:
+						{
+							MotorBoat* motorBoat = new MotorBoat();
+							incomingBoat = motorBoat;
+						}
+						break;
+						case 2:
+						{
+							NarrowBoat* narrowBoat = new NarrowBoat();
+							incomingBoat = narrowBoat;
+						}
+						break;
+						case 3:
+						{
+							SailingBoat* sailingBoat = new SailingBoat();
+							incomingBoat = sailingBoat;
+						}
+						break;
+						default:
+						{
+							// No type matched. Ask again.
+							HelperFunctions::printInvalidInputMessage();
+							invalidInput = true;
+							continue;
+						}
+						}
+
+						// check that there is enough space 
+						if (marina->isBoatAllowed(incomingBoat))
+						{
+							// If yes, then get duration of stay
+							incomingBoat->askAndSetBookingDuration();
+
+							// calculate price and ask confirmation
+							marina->calculateAndDisplayBookingCost(incomingBoat);
+							// user can confirm or reject
+							string confirmation;
+							bool invalidConfirmation;
+							int confirmationInteger;
+
+							do
 							{
-								case 1:
-								{
-									MotorBoat* motorBoat = new MotorBoat();
-									incomingBoat = motorBoat;
-								}
-								break;
-								case 2:
-								{
-									NarrowBoat* narrowBoat = new NarrowBoat();
-									incomingBoat = narrowBoat;
-								}
-								break;
-								case 3:
-								{
-									SailingBoat* sailingBoat = new SailingBoat();
-									incomingBoat = sailingBoat;
-								}
-								break;
-								default:
-								{
-									// No type matched. Ask again.
-									HelperFunctions::printInvalidInputMessage();
-									invalidInput = true;
-									continue;
-								}
-							}
+								invalidConfirmation = false;
 
-							// check that there is enough space 
-							if (marina->isBoatAllowed(incomingBoat))
-							{
-								// If yes, then get duration of stay
-								incomingBoat->askAndSetBookingDuration();
+								HelperFunctions::printSubMenu(menuChoiceInteger, 2);
+								confirmation = HelperFunctions::getStringInput();
 
-								// calculate price and ask confirmation
-								marina->calculateAndDisplayBookingCost(incomingBoat);
-								// user can confirm or reject
-								string confirmation;
-								bool invalidConfirmation;
-								int confirmationInteger;
-
-								do
+								if (HelperFunctions::checkIfStringIsInteger(confirmation))
 								{
-									invalidConfirmation = false;
+									confirmationInteger = HelperFunctions::convertStringToInteger(confirmation);
 
-									HelperFunctions::printSubMenu(menuChoiceInteger, 2);
-									confirmation = HelperFunctions::getStringInput();
-
-									if (HelperFunctions::checkIfStringIsInteger(confirmation))
+									switch (confirmationInteger)
 									{
-										confirmationInteger = HelperFunctions::convertStringToInteger(confirmation);
-										
-										switch (confirmationInteger)
-										{
-											case 1:
-											{
-												// if confirmed get boat and owner name
-												incomingBoat->askAndSetBoatName();
-												incomingBoat->askAndSetOwnerName();
-												// boat can be moored
-												marina->mooredBoats.push_back(incomingBoat);
-											}
-											break;
-											case 2:
-											{
-												//user has declined the offer
-												marina->printDeclinedOfferMessage();
-												HelperFunctions::pauseExecution();
-												continue;
-											}
-											break;
-											default:
-											{
-												HelperFunctions::printInvalidInputMessage();
-												invalidConfirmation = true;
-												continue;
-											}
-										}
+									case 1:
+									{
+										// if confirmed get boat and owner name
+										incomingBoat->askAndSetBoatName();
+										incomingBoat->askAndSetOwnerName();
+										// boat can be moored
+										marina->mooredBoats.push_back(incomingBoat);
 									}
-									else
+									break;
+									case 2:
+									{
+										//user has declined the offer
+										marina->printDeclinedOfferMessage();
+										HelperFunctions::pauseExecution();
+										continue;
+									}
+									break;
+									default:
 									{
 										HelperFunctions::printInvalidInputMessage();
 										invalidConfirmation = true;
 										continue;
 									}
+									}
+								}
+								else
+								{
+									HelperFunctions::printInvalidInputMessage();
+									invalidConfirmation = true;
+									continue;
+								}
 
-								} while (invalidConfirmation);
-							}
-							else
-							{
-								marina->printBoatIsNotAllowed(incomingBoat);
-								HelperFunctions::pauseExecution();
-							}
+							} while (invalidConfirmation);
 						}
 						else
 						{
-							HelperFunctions::printInvalidInputMessage();
-							invalidInput = true;
-							continue;
+							marina->printBoatIsNotAllowed(incomingBoat);
+							HelperFunctions::pauseExecution();
 						}
-
-					} while (invalidInput);
-				}
-				break;
-
-				// Delete record
-				case 2:
-				{
-					string nameOfBoatToDelete;
-
-					HelperFunctions::printSubMenu(menuChoiceInteger, 1);
-
-					nameOfBoatToDelete = HelperFunctions::getStringInput();
-
-					list<Boat*>::iterator positionOfBoatToDelete;
-					positionOfBoatToDelete = marina->searchMooredBoatByName(nameOfBoatToDelete);
-
-					// searchMooredBoatByName returns iterator to end if a boat is not found 
-					if (positionOfBoatToDelete != marina->mooredBoats.end())
-					{
-						marina->removeBoatFromMarina(positionOfBoatToDelete);
 					}
 					else
 					{
-						marina->printBoatNotFound(nameOfBoatToDelete);
+						HelperFunctions::printInvalidInputMessage();
+						invalidInput = true;
+						continue;
 					}
-					
-					HelperFunctions::pauseExecution();
-				}
-				break;
 
-				// Show marina
-				case 3:
-				{
-					// Nicely display the space left and the moored boats
-					marina->displayMarinaInformation();
-					HelperFunctions::pauseExecution();
-				}
-				break;
+				} while (invalidInput);
+			}
+			break;
 
-				//Exit
-				case 4:
-				{
-					// Save Marina status to file
-					HelperFunctions::saveMarinaStatus(marina);
+			// Delete record
+			case 2:
+			{
+				string nameOfBoatToDelete;
 
-					HelperFunctions::printGoodbyeMessage();
-				}
-				break;
-				default:
+				HelperFunctions::printSubMenu(menuChoiceInteger, 1);
+
+				nameOfBoatToDelete = HelperFunctions::getStringInput();
+
+				list<Boat*>::iterator positionOfBoatToDelete;
+				positionOfBoatToDelete = marina->searchMooredBoatByName(nameOfBoatToDelete);
+
+				// searchMooredBoatByName returns iterator to end if a boat is not found 
+				if (positionOfBoatToDelete != marina->mooredBoats.end())
 				{
-					// Try again
-					HelperFunctions::printInvalidInputMessage();
-					continue;
+					marina->removeBoatFromMarina(positionOfBoatToDelete);
 				}
+				else
+				{
+					marina->printBoatNotFound(nameOfBoatToDelete);
+				}
+
+				HelperFunctions::pauseExecution();
+			}
+			break;
+
+			// Show marina
+			case 3:
+			{
+				// Nicely display the space left and the moored boats
+				marina->displayMarinaInformation();
+				HelperFunctions::pauseExecution();
+			}
+			break;
+
+			//Exit
+			case 4:
+			{
+				// Save Marina status to file
+				HelperFunctions::saveMarinaStatus(marina);
+
+				HelperFunctions::printGoodbyeMessage();
+			}
+			break;
+			default:
+			{
+				// Try again
+				HelperFunctions::printInvalidInputMessage();
+				continue;
+			}
 			}
 		}
 		else
@@ -224,9 +226,8 @@ int main(void)
 			HelperFunctions::printInvalidInputMessage();
 			continue;
 		}
-	}
-	while (menuChoiceInteger != 4);
-	
+	} while (menuChoiceInteger != 4);
+
 	HelperFunctions::pauseExecution();
 	return 0;
 }

@@ -14,9 +14,6 @@ class HelperFunctions
 {
 private:
 
-	/*static string statusFilePath = "status.bin";
-	static ofstream statusFile;*/
-
 	HelperFunctions();
 	~HelperFunctions();
 public:
