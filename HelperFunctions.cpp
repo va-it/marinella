@@ -149,6 +149,31 @@ void HelperFunctions::printInvalidInputMessage()
 	pauseExecution();
 }
 
+void HelperFunctions::printGoodbyeMessage()
+{
+	cout << "\nThank you for using MARINELLA (R) - Marina Berth Booking System" << endl;
+
+	//Based on drawings from https://asciiart.website/index.php?art=transportation/nautical
+	cout << "      ..." << endl;
+	cout << "    ..    ...                 .      vv" << endl;
+	cout << "  ...    .     ..            /|~~                vv" << endl;
+	cout << " ..   .      ..  .      ,   / |~~" << endl;
+	cout << "   ...     .   ..      /|  /  |          vv" << endl;
+	cout << "      ..              / |~~   |     ,~~~~" << endl;
+	cout << "                     /  |~~   |    /|~~~~" << endl;
+	cout << "                    /   |     |   / |" << endl;
+	cout << "                   /    |     |  /  |" << endl;
+	cout << "                  /     |     | /   |" << endl;
+	cout << "                 /      |     |/    |" << endl;
+	cout << "     =====______/       |     |=====|  __" << endl;
+	cout << "        \\   __ \\========|=====|    / \\|__)" << endl;
+	cout << "         \\'V` _\\o_o_o_o_o_o_o_o_o_o_o_o__)" << endl;
+	cout << "          \\ -------  --  ---- - -  --- /" << endl;
+	cout << "           \\  ----------- -  --- ----  |}" << endl;
+	cout << "     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "\n\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@ GOODBYE @@@@@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
+}
+
 void HelperFunctions::pauseExecution()
 {
 	do 
@@ -185,7 +210,7 @@ void HelperFunctions::loadMarinaStatus(Marina* &marina)
 	}
 	else
 	{
-		cout << "Error loading file";
+		cout << "Error loading status file" << endl;
 	}
 
 	loadedFile.close();
@@ -197,7 +222,7 @@ void HelperFunctions::saveMarinaStatus(Marina* marina)
 	// save current state to file
 	fileToSave.open(marina->nameOfStatusFile, ios::out | ios::binary);
 	if (!fileToSave) {
-		cout << "Error in creating file...\n";
+		cout << "Error in creating status file" << endl;
 	}
 
 	// get the number of boats and write that to the beginning of the file
@@ -214,6 +239,6 @@ void HelperFunctions::saveMarinaStatus(Marina* marina)
 
 	fileToSave.close();
 
-	cout << "Date saved into file the file.\n";
+	cout << "Data saved into status file" << endl;
 
 }

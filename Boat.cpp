@@ -153,8 +153,8 @@ void Boat::displayBookingDuration()
 
 void Boat::displayInfo() 
 {
-	Boat::displayMeasures();
-	Boat::displayBoatAndOwnerNames();
-	Boat::displayBookingDuration();
+	displayMeasures();
+	displayBoatAndOwnerNames();
+	displayBookingDuration();
 	cout << "\n";
 }

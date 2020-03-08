@@ -41,6 +41,8 @@ public:
 
 	static void printInvalidInputMessage();
 
+	static void printGoodbyeMessage();
+
 	static void pauseExecution();
 
 	// Input/output with files

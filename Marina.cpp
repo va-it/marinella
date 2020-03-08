@@ -70,7 +70,6 @@ void Marina::displayMooredBoats()
 		
 		displayMooredBoatsGraphical();
 
-		// Display all the boats that are being moved into the holding bay
 		for (boatPosition = mooredBoats.begin(); boatPosition != mooredBoats.end(); boatPosition++)
 		{
 			(*boatPosition)->displayInfo();

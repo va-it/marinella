@@ -205,8 +205,10 @@ int main(void)
 				//Exit
 				case 4:
 				{
-					// Goodbye message
 					// Save Marina status to file
+					HelperFunctions::saveMarinaStatus(marina);
+
+					HelperFunctions::printGoodbyeMessage();
 				}
 				break;
 				default:
@@ -224,8 +226,6 @@ int main(void)
 		}
 	}
 	while (menuChoiceInteger != 4);
-
-	HelperFunctions::saveMarinaStatus(marina);
 	
 	HelperFunctions::pauseExecution();
 	return 0;
