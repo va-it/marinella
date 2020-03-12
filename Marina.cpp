@@ -172,7 +172,6 @@ list<Boat*>::iterator Marina::search_moored_boat_by_name(const string boat_name)
 
 void Marina::remove_boat_from_marina(const list<Boat*>::iterator position_of_boat_to_delete)
 {
-	list<Boat*>::iterator boat_to_delete;
 	bool boat_to_delete_is_last = false;
 
 	const string name_of_boat_to_delete = (*position_of_boat_to_delete)->get_boat_name();
@@ -227,8 +226,9 @@ void Marina::remove_boat_from_marina(const list<Boat*>::iterator position_of_boa
 		cout << "\n##### Boat " << name_of_boat_to_delete << " leaving the marina #####" << endl;
 
 		// pop_back doesn't call the destructor since the object has been created dynamically
-		// this (delete mooredBoats.back();) should work, but it causes error in certain situations.
-
+		// this (delete moored_boats.back()) works when deleting a boat on the first run of the program
+		// However, it causes a memory access violation error when deleting a boat after loading boats from file.
+		
 		// Remove last boat from marina (the one we want to get out)
 		moored_boats.pop_back();
 

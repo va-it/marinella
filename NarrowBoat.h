@@ -4,7 +4,8 @@
 
 using namespace std;
 
-class NarrowBoat :
+// final specifies that the class cannot be inherited from
+class NarrowBoat final :
 	public Boat
 {
 public:
@@ -12,5 +13,6 @@ public:
 
 	~NarrowBoat();
 
-	void display_info();
+	// override specifies that the function overrides the virtual function from the parent class
+	void display_info() override;
 };

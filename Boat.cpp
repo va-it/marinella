@@ -3,48 +3,61 @@
 
 Boat::Boat()
 {
+	// assign default values to class properties
+	boat_name_ = owner_name_ = "";
+	length_ = depth_ = 0;
+	booking_duration_ = 0;
 }
 
-Boat::Boat(bool ask_details)
+Boat::Boat(const bool ask_details)
 {
-	bool invalid_length, invalid_depth;
-	Marina* marina = Marina::get_instance();
-
-	do
+	if (ask_details)
 	{
-		invalid_length = false;
-		cout << "\nPlease enter the length of the boat (max " << marina->get_max_boat_length() << "):\n> ";
-		const string boat_length = HelperFunctions::getStringInput();
+		bool invalid_length, invalid_depth;
+		Marina* marina = Marina::get_instance();
 
-		if (HelperFunctions::checkIfStringIsFloat(boat_length))
+		do
 		{
-			length_ = HelperFunctions::convertStringToFloat(boat_length);
-		}
-		else
+			invalid_length = false;
+			cout << "\nPlease enter the length of the boat (max " << marina->get_max_boat_length() << "):\n> ";
+			const string boat_length = HelperFunctions::get_string_input();
+
+			if (HelperFunctions::check_if_string_is_float(boat_length))
+			{
+				length_ = HelperFunctions::convert_string_to_float(boat_length);
+			}
+			else
+			{
+				HelperFunctions::print_invalid_input_message();
+				invalid_length = true;
+			}
+		} while (invalid_length);
+
+		do
 		{
-			HelperFunctions::printInvalidInputMessage();
-			invalid_length = true;
-		}
+			invalid_depth = false;
+			cout << "\nPlease enter the depth of the boat (max " << marina->get_max_boat_depth() << "):\n> ";
+			const string boat_depth = HelperFunctions::get_string_input();
+
+			if (HelperFunctions::check_if_string_is_float(boat_depth))
+			{
+				depth_ = HelperFunctions::convert_string_to_float(boat_depth);
+			}
+			else
+			{
+				HelperFunctions::print_invalid_input_message();
+				invalid_depth = true;
+			}
+		} while (invalid_depth);
+		
+		// assign default value to not initialized property
+		booking_duration_ = 0;
 	}
-	while (invalid_length);
-
-	do
+	else
 	{
-		invalid_depth = false;
-		cout << "\nPlease enter the depth of the boat (max " << marina->get_max_boat_depth() << "):\n> ";
-		const string boat_depth = HelperFunctions::getStringInput();
-
-		if (HelperFunctions::checkIfStringIsFloat(boat_depth))
-		{
-			depth_ = HelperFunctions::convertStringToFloat(boat_depth);
-		}
-		else
-		{
-			HelperFunctions::printInvalidInputMessage();
-			invalid_depth = true;
-		}
+		// don't ask user for details (e.g. call default constructor)
+		Boat();
 	}
-	while (invalid_depth);
 }
 
 Boat::~Boat()
@@ -74,7 +87,7 @@ void Boat::set_boat_name(const string boat_name_input)
 void Boat::ask_and_set_boat_name()
 {
 	cout << "\nPlease enter the name of the boat:\n> ";
-	set_boat_name(HelperFunctions::getStringInput());
+	set_boat_name(HelperFunctions::get_string_input());
 }
 
 string Boat::get_owner_name() const
@@ -104,15 +117,15 @@ void Boat::ask_and_set_booking_duration()
 	{
 		invalid_duration = false;
 		cout << "\nPlease enter the duration (in whole months) of the booking:\n> ";
-		const string booking_duration_input = HelperFunctions::getStringInput();
+		const string booking_duration_input = HelperFunctions::get_string_input();
 
-		if (HelperFunctions::checkIfStringIsInteger(booking_duration_input))
+		if (HelperFunctions::check_if_string_is_integer(booking_duration_input))
 		{
-			booking_duration_ = HelperFunctions::convertStringToInteger(booking_duration_input);
+			booking_duration_ = HelperFunctions::convert_string_to_integer(booking_duration_input);
 		}
 		else
 		{
-			HelperFunctions::printInvalidInputMessage();
+			HelperFunctions::print_invalid_input_message();
 			invalid_duration = true;
 		}
 	}
@@ -122,7 +135,7 @@ void Boat::ask_and_set_booking_duration()
 void Boat::ask_and_set_owner_name()
 {
 	cout << "\nPlease enter the name of the boat's owner:\n> ";
-	set_owner_name(HelperFunctions::getStringInput());
+	set_owner_name(HelperFunctions::get_string_input());
 }
 
 void Boat::display_measures() const
