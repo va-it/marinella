@@ -8,49 +8,52 @@ using namespace std;
 class Boat
 {
 private:
-	string boatName, ownerName;
-	float length, depth;
-	int bookingDuration;
+	string boat_name_, owner_name_;
+	float length_, depth_;
+	int booking_duration_;
 
 public:
 	Boat();
 
-	Boat(bool askDetails);
+	Boat(bool ask_details);
 
-	~Boat();
+	/* The destructor is virtual because otherwise deleting a derived object
+	 * will only call the parent destructor causing memory leak
+	 https://www.studytonight.com/cpp/virtual-destructors.php
+	 */
+	virtual ~Boat();
 
-	float getLength();
+	float get_length() const;
 
-	float getDepth();
+	float get_depth() const;
 
-	string getBoatName();
+	string get_boat_name() const;
 
-	void setBoatName(string boatNameInput);
+	void set_boat_name(string boat_name_input);
 
-	string getOwnerName();
+	string get_owner_name() const;
 
-	void setOwnerName(string ownerNameInput);
+	void set_owner_name(string owner_name_input);
 
-	int getBookingDuration();
+	int get_booking_duration() const;
 
-	void setBookingDuration(int bookingDurationInput);
+	void set_booking_duration(int booking_duration_input);
 
-	void askAndSetBookingDuration();
+	void ask_and_set_booking_duration();
 
-	void askAndSetBoatName();
+	void ask_and_set_boat_name();
 
-	void askAndSetOwnerName();
+	void ask_and_set_owner_name();
 
-	void displayMeasures();
+	void display_measures() const;
 
-	void displayBoatName();
+	void display_boat_name() const;
 
-	void displayOwnerName();
+	void display_owner_name() const;
 
-	void displayBoatAndOwnerNames();
+	void display_boat_and_owner_names() const;
 
-	void displayBookingDuration();
+	void display_booking_duration() const;
 
-	virtual void displayInfo();
+	virtual void display_info();
 };
-

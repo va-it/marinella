@@ -4,64 +4,62 @@
 
 Marina::Marina()
 {
-	marinaLength = 150;
-	maxBoatLength = 15;
-	maxBoatDepth = 5;
-	costPerMeterPerMonth = 10;
-	nameOfStatusFile = "status.bin";
+	marina_length_ = 150;
+	max_boat_length_ = 15;
+	max_boat_depth_ = 5;
+	cost_per_meter_per_month_ = 10;
+	name_of_status_file = "status.bin";
 }
 
-Marina* Marina::getInstance()
+Marina* Marina::get_instance()
 {
-	if (!instance)
+	if (!instance_)
 	{
-		instance = new Marina();
+		instance_ = new Marina();
 	}
 
-	return instance;
+	return instance_;
 }
 
-float Marina::getMaxBoatLength()
+float Marina::get_max_boat_length() const
 {
-	return maxBoatLength;
+	return max_boat_length_;
 }
 
-float Marina::getMaxBoatDepth()
+float Marina::get_max_boat_depth() const
 {
-	return maxBoatDepth;
+	return max_boat_depth_;
 }
 
-float Marina::getRemainingSpace()
+float Marina::get_remaining_space()
 {
-	return marinaLength - Marina::getOccupiedSpace();
+	return marina_length_ - Marina::get_occupied_space();
 }
 
-void Marina::printRemainingSpace()
+void Marina::print_remaining_space()
 {
-	cout << "\nSpace left: " << getRemainingSpace() << "m" << endl;
+	cout << "\nSpace left: " << get_remaining_space() << "m" << endl;
 }
 
-float Marina::getOccupiedSpace()
+float Marina::get_occupied_space()
 {
-	std::list<Boat*>::iterator boat;
-
 	float totalLength = 0;
 
-	for (boat = mooredBoats.begin(); boat != mooredBoats.end(); boat++)
+	for (std::list<Boat*>::iterator boat = moored_boats.begin(); boat != moored_boats.end(); ++boat)
 	{
-		totalLength += (*boat)->getLength();
+		totalLength += (*boat)->get_length();
 	}
 
 	return totalLength;
 }
 
-bool Marina::isBoatAllowed(Boat* boat)
+bool Marina::is_boat_allowed(Boat* boat)
 {
 	// Boat is within limits
-	if (boat->getDepth() <= maxBoatDepth && boat->getLength() <= maxBoatLength)
+	if (boat->get_depth() <= max_boat_depth_ && boat->get_length() <= max_boat_length_)
 	{
 		// There is enough space left
-		if (boat->getLength() <= Marina::getRemainingSpace())
+		if (boat->get_length() <= Marina::get_remaining_space())
 		{
 			return true;
 		}
@@ -70,19 +68,17 @@ bool Marina::isBoatAllowed(Boat* boat)
 	return false;
 }
 
-void Marina::displayMooredBoats()
+void Marina::display_moored_boats()
 {
-	list<Boat*>::iterator boatPosition;
-
-	if (!mooredBoats.empty())
+	if (!moored_boats.empty())
 	{
-		cout << "\n========== Moored boats (" << mooredBoats.size() << ") ==========" << endl;
+		cout << "\n========== Moored boats (" << moored_boats.size() << ") ==========" << endl;
 
-		displayMooredBoatsGraphical();
+		display_moored_boats_graphical();
 
-		for (boatPosition = mooredBoats.begin(); boatPosition != mooredBoats.end(); boatPosition++)
+		for (list<Boat*>::iterator boat_position = moored_boats.begin(); boat_position != moored_boats.end(); ++boat_position)
 		{
-			(*boatPosition)->displayInfo();
+			(*boat_position)->display_info();
 		}
 	}
 	else
@@ -91,41 +87,37 @@ void Marina::displayMooredBoats()
 	}
 }
 
-void Marina::displayMooredBoatsGraphical(bool showHeading)
+void Marina::display_moored_boats_graphical(const bool show_heading) const
 {
-	list<Boat*>::const_iterator boatPosition;
-
-	if (!mooredBoats.empty())
+	if (!moored_boats.empty())
 	{
-		if (showHeading)
+		if (show_heading)
 		{
-			cout << "\n========== Moored boats (" << mooredBoats.size() << ") ==========" << endl;
+			cout << "\n========== Moored boats (" << moored_boats.size() << ") ==========" << endl;
 		}
 
 		cout << "--------------------------------------" << endl;
 
-		for (boatPosition = mooredBoats.cbegin(); boatPosition != mooredBoats.cend(); boatPosition++)
+		for (list<Boat*>::const_iterator boat_position = moored_boats.cbegin(); boat_position != moored_boats.cend(); ++boat_position)
 		{
-			cout << (*boatPosition)->getBoatName() << " | ";
+			cout << (*boat_position)->get_boat_name() << " | ";
 		}
 
 		cout << "\n--------------------------------------" << endl;
 	}
 }
 
-void Marina::displayHoldingBay()
+void Marina::display_holding_bay()
 {
-	std::list<Boat*>::iterator boatPosition;
-
-	if (!holdingBay.empty())
+	if (!holding_bay.empty())
 	{
-		cout << "\n========== Holding bay (" << holdingBay.size() << ") ==========" << endl;
+		cout << "\n========== Holding bay (" << holding_bay.size() << ") ==========" << endl;
 
-		displayHoldingBayGraphical();
+		display_holding_bay_graphical();
 
-		for (boatPosition = holdingBay.begin(); boatPosition != holdingBay.end(); boatPosition++)
+		for (std::list<Boat*>::iterator boat_position = holding_bay.begin(); boat_position != holding_bay.end(); ++boat_position)
 		{
-			(*boatPosition)->displayInfo();
+			(*boat_position)->display_info();
 		}
 	}
 	else
@@ -134,87 +126,82 @@ void Marina::displayHoldingBay()
 	}
 }
 
-void Marina::displayHoldingBayGraphical(bool showHeading)
+void Marina::display_holding_bay_graphical(bool show_heading) const
 {
-	list<Boat*>::const_iterator boatPosition;
-
-	if (!holdingBay.empty())
+	if (!holding_bay.empty())
 	{
-		if (showHeading)
+		if (show_heading)
 		{
-			cout << "\n========== Holding bay (" << holdingBay.size() << ") ==========" << endl;
+			cout << "\n========== Holding bay (" << holding_bay.size() << ") ==========" << endl;
 		}
 
 		cout << "--------------------------------------" << endl;
 
-		for (boatPosition = holdingBay.cbegin(); boatPosition != holdingBay.cend(); boatPosition++)
+		for (list<Boat*>::const_iterator boat_position = holding_bay.cbegin(); boat_position != holding_bay.cend(); ++boat_position)
 		{
-			cout << (*boatPosition)->getBoatName() << " | ";
+			cout << (*boat_position)->get_boat_name() << " | ";
 		}
 
 		cout << "\n--------------------------------------" << endl;
 	}
 }
 
-void Marina::displayMarinaInformation()
+void Marina::display_marina_information()
 {
 	cout << "\n%%%%%%%%%% MARINA INFORMATION %%%%%%%%%%" << endl;
-	printRemainingSpace();
-	displayMooredBoats();
+	print_remaining_space();
+	display_moored_boats();
 }
 
 //http://www.cplusplus.com/reference/list/list/splice/
-list<Boat*>::iterator Marina::searchMooredBoatByName(string boatName)
+list<Boat*>::iterator Marina::search_moored_boat_by_name(const string boat_name)
 {
-	list<Boat*>::iterator boatPosition;
-
-	for (boatPosition = mooredBoats.begin(); boatPosition != mooredBoats.end(); boatPosition++)
+	for (list<Boat*>::iterator boat_position = moored_boats.begin(); boat_position != moored_boats.end(); ++boat_position)
 	{
-		if ((*boatPosition)->getBoatName() == boatName)
+		if ((*boat_position)->get_boat_name() == boat_name)
 		{
-			return boatPosition;
+			return boat_position;
 		}
 	}
 
 	// return end position if no matching boat is found
 	// same behaviour as find function
 	// http://www.cplusplus.com/reference/algorithm/find/
-	return mooredBoats.end();
+	return moored_boats.end();
 }
 
-void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
+void Marina::remove_boat_from_marina(const list<Boat*>::iterator position_of_boat_to_delete)
 {
-	list<Boat*>::reverse_iterator reverse_iterator;
-	list<Boat*>::iterator iterator, boatToDelete;
-	bool boatToDeleteIsLast = false;
+	list<Boat*>::iterator boat_to_delete;
+	bool boat_to_delete_is_last = false;
 
-	string nameOfBoatToDelete = (*positionOfBoatToDelete)->getBoatName();
+	const string name_of_boat_to_delete = (*position_of_boat_to_delete)->get_boat_name();
 
-	if (mooredBoats.size() == 1)
+	if (moored_boats.size() == 1)
 	{
-		cout << "\n##### Boat " << nameOfBoatToDelete << " leaving the marina #####" << endl;
+		cout << "\n##### Boat " << name_of_boat_to_delete << " leaving the marina #####" << endl;
 
 		// Free up memory. clear wouldn't call the destructor since the object has been created dynamically
-		delete mooredBoats.back();
+		delete moored_boats.back();
 		// simply empty the list
-		mooredBoats.clear();
+		moored_boats.clear();
 		// Show that the marina is empty
-		displayMooredBoats();
+		display_moored_boats();
 	}
 	else
 	{
 		// If the boat to delete is the last one then don't show the message about moving things into the holding bay 
 		// https://stackoverflow.com/questions/3516196/testing-whether-an-iterator-points-to-the-last-item
-		if ((positionOfBoatToDelete != mooredBoats.end()) && (next(positionOfBoatToDelete) == mooredBoats.end()))
+		if ((position_of_boat_to_delete != moored_boats.end()) && (next(position_of_boat_to_delete) == moored_boats.end()))
 		{
-			boatToDeleteIsLast = true;
+			boat_to_delete_is_last = true;
 		}
 
 		// Show the current status of the marina
-		displayMooredBoatsGraphical(true);
-		displayHoldingBayGraphical(true);
+		display_moored_boats_graphical(true);
+		display_holding_bay_graphical(true);
 
-		if (!boatToDeleteIsLast)
+		if (!boat_to_delete_is_last)
 		{
 			cout << "\n>>>>> Moving boats into the holding bay... >>>>>" << endl;
 
@@ -222,83 +209,82 @@ void Marina::removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete)
 			// http://www.cplusplus.com/reference/list/list/splice/
 			// Display all the boats that are being moved into the holding bay
 			// https://thispointer.com/c-different-ways-to-iterate-over-a-list-of-objects/
-			// convert reverse iterator to forward to compare with parameter
-			// https://stackoverflow.com/questions/2037867/can-i-convert-a-reverse-iterator-to-a-forward-iterator
 			// Using next to only move the boats behind the one to delete.
-			for (reverse_iterator = mooredBoats.rbegin(); reverse_iterator.base() != next(positionOfBoatToDelete); reverse_iterator++)
+			for (list<Boat*>::reverse_iterator reverse_iterator = moored_boats.rbegin(); reverse_iterator.base() != next(position_of_boat_to_delete); ++reverse_iterator)
 			{
-				cout << "\n" << (*reverse_iterator)->getBoatName() << " ===> Holding bay";
+				cout << "\n" << (*reverse_iterator)->get_boat_name() << " ===> Holding bay";
 			}
 
 			// Moving boats from marina to holding bay
-			holdingBay.splice(holdingBay.begin(), mooredBoats, next(positionOfBoatToDelete), mooredBoats.end());
+			holding_bay.splice(holding_bay.begin(), moored_boats, next(position_of_boat_to_delete), moored_boats.end());
 
 			// Show how the boats behind the one to delete are now in the holding bay
 			cout << "\n";
-			displayMooredBoatsGraphical(true);
-			displayHoldingBayGraphical(true);
+			display_moored_boats_graphical(true);
+			display_holding_bay_graphical(true);
 		}
 
-		cout << "\n##### Boat " << nameOfBoatToDelete << " leaving the marina #####" << endl;
+		cout << "\n##### Boat " << name_of_boat_to_delete << " leaving the marina #####" << endl;
 
 		// pop_back doesn't call the destructor since the object has been created dynamically
 		// this (delete mooredBoats.back();) should work, but it causes error in certain situations.
 
 		// Remove last boat from marina (the one we want to get out)
-		mooredBoats.pop_back();
+		moored_boats.pop_back();
 
-		if (!boatToDeleteIsLast)
+		if (!boat_to_delete_is_last)
 		{
 			cout << "\n<<<<< Moving boats back into the marina... <<<<<" << endl;
 
 			// Display all the boats that are being moved into the holding bay
-			for (iterator = holdingBay.begin(); iterator != holdingBay.end(); iterator++)
+			for (list<Boat*>::iterator iterator = holding_bay.begin(); iterator != holding_bay.end(); ++iterator)
 			{
-				cout << "\nMarina <=== " << (*iterator)->getBoatName();
+				cout << "\nMarina <=== " << (*iterator)->get_boat_name();
 			}
 
-			mooredBoats.splice(mooredBoats.end(), holdingBay);
+			moored_boats.splice(moored_boats.end(), holding_bay);
 		}
 
 		// Show that all the boats are once again in the marina
 		cout << "\n";
-		displayMooredBoatsGraphical(true);
-		displayHoldingBayGraphical(true);
+		display_moored_boats_graphical(true);
+		display_holding_bay_graphical(true);
 	}
 }
 
-void Marina::calculateAndDisplayBookingCost(Boat* boat)
+void Marina::calculate_and_display_booking_cost(Boat* boat) const
 {
-	float lengthOfBoat = boat->getLength();
-	int bookingDuration = boat->getBookingDuration();
+	const float length_of_boat = boat->get_length();
+	const int booking_duration = boat->get_booking_duration();
 
-	float costPerLength = (costPerMeterPerMonth * lengthOfBoat);
-	float costPerLengthAndDuration = costPerLength * bookingDuration;
+	const float cost_per_length = (cost_per_meter_per_month_ * length_of_boat);
+	const float cost_per_length_and_duration = cost_per_length * booking_duration;
+	
 	cout << "\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
-	cout << "The calculated cost for this booking is: " << costPerLengthAndDuration << endl;
+	cout << "The calculated cost for this booking is: " << cost_per_length_and_duration << endl;
 	cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << endl;
 }
 
-void Marina::printBoatNotFound(string boatName)
+void Marina::print_boat_not_found(const string boat_name)
 {
-	cout << "\nBoat \"" << boatName << "\" not found" << endl;
+	cout << "\nBoat \"" << boat_name << "\" not found" << endl;
 }
 
-void Marina::printBoatIsNotAllowed(Boat* boat)
+void Marina::print_boat_is_not_allowed(Boat* boat)
 {
 	cout << "\n-------------------------------------------------" << endl;
 	cout << "|  !!!!!     This boat is not allowed     !!!!! |" << endl;
 	cout << "-------------------------------------------------\n";
 
 	cout << "\n----------------------------------------------" << endl;
-	boat->displayMeasures();
-	printMaxBoatSizes();
-	printRemainingSpace();
+	boat->display_measures();
+	print_max_boat_sizes();
+	print_remaining_space();
 	cout << "----------------------------------------------" << endl;
 
 }
 
-void Marina::printDeclinedOfferMessage()
+void Marina::print_declined_offer_message()
 {
 	cout << "\nSorry, we hope to see you again." << endl;
 }
@@ -307,11 +293,11 @@ Marina::~Marina()
 {
 }
 
-void Marina::printMaxBoatSizes()
+void Marina::print_max_boat_sizes() const
 {
-	cout << "\nMax boat length allowed: " << maxBoatLength << "m" << endl;
-	cout << "Max boat depth allowed: " << maxBoatDepth << "m" << endl;
+	cout << "\nMax boat length allowed: " << max_boat_length_ << "m" << endl;
+	cout << "Max boat depth allowed: " << max_boat_depth_ << "m" << endl;
 }
 
 //https://gist.github.com/pazdera/1098119
-Marina *Marina::instance = 0;
+Marina *Marina::instance_ = 0;

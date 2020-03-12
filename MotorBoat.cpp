@@ -8,7 +8,7 @@ MotorBoat::~MotorBoat()
 {
 }
 
-void MotorBoat::displayInfo()
+void MotorBoat::display_info()
 {
 	//Based on drawings from https://asciiart.website/index.php?art=transportation/nautical
 	cout << "\n********** Motor boat **********" << endl;
@@ -18,5 +18,5 @@ void MotorBoat::displayInfo()
 	cout << " \\              < < <         |" << endl;
 	cout << " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 
-	Boat::displayInfo();
+	Boat::display_info();
 }

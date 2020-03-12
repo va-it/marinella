@@ -12,6 +12,6 @@ public:
 
 	~MotorBoat();
 
-	void displayInfo();
+	void display_info();
 };
 

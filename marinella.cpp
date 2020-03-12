@@ -17,7 +17,7 @@ using namespace std;
 int main(void)
 {
 
-	Marina* marina = Marina::getInstance();
+	Marina* marina = Marina::get_instance();
 	string menuChoice;
 	int menuChoiceInteger = 0;
 
@@ -93,13 +93,13 @@ int main(void)
 						}
 
 						// check that there is enough space 
-						if (marina->isBoatAllowed(incomingBoat))
+						if (marina->is_boat_allowed(incomingBoat))
 						{
 							// If yes, then get duration of stay
-							incomingBoat->askAndSetBookingDuration();
+							incomingBoat->ask_and_set_booking_duration();
 
 							// calculate price and ask confirmation
-							marina->calculateAndDisplayBookingCost(incomingBoat);
+							marina->calculate_and_display_booking_cost(incomingBoat);
 							// user can confirm or reject
 							string confirmation;
 							bool invalidConfirmation;
@@ -121,16 +121,16 @@ int main(void)
 									case 1:
 									{
 										// if confirmed get boat and owner name
-										incomingBoat->askAndSetBoatName();
-										incomingBoat->askAndSetOwnerName();
+										incomingBoat->ask_and_set_boat_name();
+										incomingBoat->ask_and_set_owner_name();
 										// boat can be moored
-										marina->mooredBoats.push_back(incomingBoat);
+										marina->moored_boats.push_back(incomingBoat);
 									}
 									break;
 									case 2:
 									{
 										//user has declined the offer
-										marina->printDeclinedOfferMessage();
+										marina->print_declined_offer_message();
 										HelperFunctions::pauseExecution();
 										continue;
 									}
@@ -154,7 +154,7 @@ int main(void)
 						}
 						else
 						{
-							marina->printBoatIsNotAllowed(incomingBoat);
+							marina->print_boat_is_not_allowed(incomingBoat);
 							HelperFunctions::pauseExecution();
 						}
 					}
@@ -179,16 +179,16 @@ int main(void)
 				nameOfBoatToDelete = HelperFunctions::getStringInput();
 
 				list<Boat*>::iterator positionOfBoatToDelete;
-				positionOfBoatToDelete = marina->searchMooredBoatByName(nameOfBoatToDelete);
+				positionOfBoatToDelete = marina->search_moored_boat_by_name(nameOfBoatToDelete);
 
 				// searchMooredBoatByName returns iterator to end if a boat is not found 
-				if (positionOfBoatToDelete != marina->mooredBoats.end())
+				if (positionOfBoatToDelete != marina->moored_boats.end())
 				{
-					marina->removeBoatFromMarina(positionOfBoatToDelete);
+					marina->remove_boat_from_marina(positionOfBoatToDelete);
 				}
 				else
 				{
-					marina->printBoatNotFound(nameOfBoatToDelete);
+					marina->print_boat_not_found(nameOfBoatToDelete);
 				}
 
 				HelperFunctions::pauseExecution();
@@ -199,7 +199,7 @@ int main(void)
 			case 3:
 			{
 				// Nicely display the space left and the moored boats
-				marina->displayMarinaInformation();
+				marina->display_marina_information();
 				HelperFunctions::pauseExecution();
 			}
 			break;

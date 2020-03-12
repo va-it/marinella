@@ -186,7 +186,7 @@ void HelperFunctions::pauseExecution()
 void HelperFunctions::loadMarinaStatus(Marina* &marina)
 {
 	// read status from file
-	ifstream loadedFile(marina->nameOfStatusFile, ios::binary | ios::in);
+	ifstream loadedFile(marina->name_of_status_file, ios::binary | ios::in);
 
 	if (loadedFile.is_open())
 	{
@@ -200,7 +200,7 @@ void HelperFunctions::loadMarinaStatus(Marina* &marina)
 		{
 			loadedBoats[j] = new Boat();
 			loadedFile.read((char*)loadedBoats[j], sizeof(Boat));
-			marina->mooredBoats.push_back(loadedBoats[j]);
+			marina->moored_boats.push_back(loadedBoats[j]);
 		}
 
 		// free memory used to store Boat objects
@@ -218,19 +218,19 @@ void HelperFunctions::saveMarinaStatus(Marina* marina)
 {
 	ofstream fileToSave;
 	// save current state to file
-	fileToSave.open(marina->nameOfStatusFile, ios::out | ios::binary);
+	fileToSave.open(marina->name_of_status_file, ios::out | ios::binary);
 	if (!fileToSave) {
 		cout << "Error in creating status file" << endl;
 	}
 
 	// get the number of boats and write that to the beginning of the file
 	// used to loop X many times when loading the file
-	int numberOfBoats = marina->mooredBoats.size();
+	int numberOfBoats = marina->moored_boats.size();
 	fileToSave.write((char*)&numberOfBoats, sizeof(int));
 
 	list<Boat*>::const_iterator boatPosition;
 	// loop over every boat in the marina and save to file
-	for (boatPosition = marina->mooredBoats.cbegin(); boatPosition != marina->mooredBoats.cend(); boatPosition++)
+	for (boatPosition = marina->moored_boats.cbegin(); boatPosition != marina->moored_boats.cend(); boatPosition++)
 	{
 		fileToSave.write((char*)(*boatPosition), sizeof(Boat));
 	}

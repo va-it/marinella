@@ -5,53 +5,53 @@
 class Marina
 {
 private:
-	float marinaLength, maxBoatLength, maxBoatDepth, costPerMeterPerMonth;
-	static Marina *instance;
+	float marina_length_, max_boat_length_, max_boat_depth_, cost_per_meter_per_month_;
+	static Marina* instance_;
 
 	Marina();
 
 public:
-	list<Boat*> mooredBoats, holdingBay;
+	list<Boat*> moored_boats, holding_bay;
 
-	string nameOfStatusFile;
+	string name_of_status_file;
 
-	static Marina* getInstance();
+	static Marina* get_instance();
 
-	float getMaxBoatLength();
+	float get_max_boat_length() const;
 	
-	float getMaxBoatDepth();
+	float get_max_boat_depth() const;
 
-	float getRemainingSpace();
+	float get_remaining_space();
 
-	void printRemainingSpace();
+	void print_remaining_space();
 
-	float getOccupiedSpace();
+	float get_occupied_space();
 
-	bool isBoatAllowed(Boat* boat);
+	bool is_boat_allowed(Boat* boat);
 
-	void displayMooredBoats();
+	void display_moored_boats();
 
-	void displayMooredBoatsGraphical(bool showHeading = false);
+	void display_moored_boats_graphical(bool show_heading = false) const;
 
-	void displayHoldingBay();
+	void display_holding_bay();
 
-	void displayHoldingBayGraphical(bool showHeading = false);
+	void display_holding_bay_graphical(bool show_heading = false) const;
 
-	void displayMarinaInformation();
+	void display_marina_information();
 
-	list<Boat*>::iterator searchMooredBoatByName(string boatName);
+	list<Boat*>::iterator search_moored_boat_by_name(string boat_name);
 
-	void removeBoatFromMarina(list<Boat*>::iterator positionOfBoatToDelete);
+	void remove_boat_from_marina(list<Boat*>::iterator position_of_boat_to_delete);
 
-	void calculateAndDisplayBookingCost(Boat* boat);
+	void calculate_and_display_booking_cost(Boat* boat) const;
 
-	void printBoatNotFound(string boatName);
+	static void print_boat_not_found(string boat_name);
 
-	void printBoatIsNotAllowed(Boat* boat);
+	void print_boat_is_not_allowed(Boat* boat);
 
-	void printDeclinedOfferMessage();
+	static void print_declined_offer_message();
 
-	void printMaxBoatSizes();
+	void print_max_boat_sizes() const;
 
 	~Marina();
 };

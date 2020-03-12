@@ -5,155 +5,155 @@ Boat::Boat()
 {
 }
 
-Boat::Boat(bool askDetails)
+Boat::Boat(bool ask_details)
 {
-	bool invalidLength, invalidDepth;
-	Marina* marina = Marina::getInstance();
+	bool invalid_length, invalid_depth;
+	Marina* marina = Marina::get_instance();
 
 	do
 	{
-		invalidLength = false;
-		cout << "\nPlease enter the lenght of the boat (max " << marina->getMaxBoatLength() << "):\n> ";
-		string boatLength = HelperFunctions::getStringInput();
+		invalid_length = false;
+		cout << "\nPlease enter the length of the boat (max " << marina->get_max_boat_length() << "):\n> ";
+		const string boat_length = HelperFunctions::getStringInput();
 
-		if (HelperFunctions::checkIfStringIsFloat(boatLength))
+		if (HelperFunctions::checkIfStringIsFloat(boat_length))
 		{
-			length = HelperFunctions::convertStringToFloat(boatLength);
+			length_ = HelperFunctions::convertStringToFloat(boat_length);
 		}
 		else
 		{
 			HelperFunctions::printInvalidInputMessage();
-			invalidLength = true;
+			invalid_length = true;
 		}
-
-	} while (invalidLength);
+	}
+	while (invalid_length);
 
 	do
 	{
-		invalidDepth = false;
-		cout << "\nPlease enter the depth of the boat (max " << marina->getMaxBoatDepth() << "):\n> ";
-		string boatDepth = HelperFunctions::getStringInput();
+		invalid_depth = false;
+		cout << "\nPlease enter the depth of the boat (max " << marina->get_max_boat_depth() << "):\n> ";
+		const string boat_depth = HelperFunctions::getStringInput();
 
-		if (HelperFunctions::checkIfStringIsFloat(boatDepth))
+		if (HelperFunctions::checkIfStringIsFloat(boat_depth))
 		{
-			depth = HelperFunctions::convertStringToFloat(boatDepth);
+			depth_ = HelperFunctions::convertStringToFloat(boat_depth);
 		}
 		else
 		{
 			HelperFunctions::printInvalidInputMessage();
-			invalidDepth = true;
+			invalid_depth = true;
 		}
-
-	} while (invalidDepth);
+	}
+	while (invalid_depth);
 }
 
 Boat::~Boat()
 {
 }
 
-float Boat::getLength()
+float Boat::get_length() const
 {
-	return length;
+	return length_;
 }
 
-float Boat::getDepth()
+float Boat::get_depth() const
 {
-	return depth;
+	return depth_;
 }
 
-string Boat::getBoatName()
+string Boat::get_boat_name() const
 {
-	return boatName;
+	return boat_name_;
 }
 
-void Boat::setBoatName(string boatNameInput)
+void Boat::set_boat_name(const string boat_name_input)
 {
-	boatName = boatNameInput;
+	boat_name_ = boat_name_input;
 }
 
-void Boat::askAndSetBoatName()
+void Boat::ask_and_set_boat_name()
 {
 	cout << "\nPlease enter the name of the boat:\n> ";
-	setBoatName(HelperFunctions::getStringInput());
+	set_boat_name(HelperFunctions::getStringInput());
 }
 
-string Boat::getOwnerName()
+string Boat::get_owner_name() const
 {
-	return ownerName;
+	return owner_name_;
 }
 
-void Boat::setOwnerName(string ownerNameInput)
+void Boat::set_owner_name(const string owner_name_input)
 {
-	ownerName = ownerNameInput;
+	owner_name_ = owner_name_input;
 }
 
-int Boat::getBookingDuration()
+int Boat::get_booking_duration() const
 {
-	return bookingDuration;
+	return booking_duration_;
 }
 
-void Boat::setBookingDuration(int bookingDurationInput)
+void Boat::set_booking_duration(const int booking_duration_input)
 {
-	bookingDuration = bookingDurationInput;
+	booking_duration_ = booking_duration_input;
 }
 
-void Boat::askAndSetBookingDuration()
+void Boat::ask_and_set_booking_duration()
 {
-	bool invalidDuration;
+	bool invalid_duration;
 	do
 	{
-		invalidDuration = false;
+		invalid_duration = false;
 		cout << "\nPlease enter the duration (in whole months) of the booking:\n> ";
-		string bookingDurationInput = HelperFunctions::getStringInput();
+		const string booking_duration_input = HelperFunctions::getStringInput();
 
-		if (HelperFunctions::checkIfStringIsInteger(bookingDurationInput))
+		if (HelperFunctions::checkIfStringIsInteger(booking_duration_input))
 		{
-			bookingDuration = HelperFunctions::convertStringToInteger(bookingDurationInput);
+			booking_duration_ = HelperFunctions::convertStringToInteger(booking_duration_input);
 		}
 		else
 		{
 			HelperFunctions::printInvalidInputMessage();
-			invalidDuration = true;
+			invalid_duration = true;
 		}
-
-	} while (invalidDuration);
+	}
+	while (invalid_duration);
 }
 
-void Boat::askAndSetOwnerName()
+void Boat::ask_and_set_owner_name()
 {
 	cout << "\nPlease enter the name of the boat's owner:\n> ";
-	setOwnerName(HelperFunctions::getStringInput());
+	set_owner_name(HelperFunctions::getStringInput());
 }
 
-void Boat::displayMeasures()
+void Boat::display_measures() const
 {
-	cout << "Boat lenght: " << length << "m | " << "Boat depth: " << depth << "m" << endl;
+	cout << "Boat length: " << length_ << "m | " << "Boat depth: " << depth_ << "m" << endl;
 }
 
-void Boat::displayBoatName()
+void Boat::display_boat_name() const
 {
-	cout << "Boat Name: " << boatName << endl;
+	cout << "Boat Name: " << boat_name_ << endl;
 }
 
-void Boat::displayOwnerName()
+void Boat::display_owner_name() const
 {
-	cout << "Owner Name: " << ownerName << endl;
+	cout << "Owner Name: " << owner_name_ << endl;
 }
 
-void Boat::displayBoatAndOwnerNames()
+void Boat::display_boat_and_owner_names() const
 {
-	cout << "Boat Name: " << boatName << " | " << "Owner Name: " << ownerName << endl;
+	cout << "Boat Name: " << boat_name_ << " | " << "Owner Name: " << owner_name_ << endl;
 }
 
-void Boat::displayBookingDuration()
+void Boat::display_booking_duration() const
 {
-	cout << "Booking duration: " << bookingDuration << " months" << endl;
+	cout << "Booking duration: " << booking_duration_ << " months" << endl;
 }
 
-void Boat::displayInfo()
+void Boat::display_info()
 {
-	displayMeasures();
-	displayBoatAndOwnerNames();
-	displayBookingDuration();
+	display_measures();
+	display_boat_and_owner_names();
+	display_booking_duration();
 	cout << "\n";
 }
